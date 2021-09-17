@@ -1,5 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
+import logoAdalab from '../images/logo-adalab.png';
+//import tarjetasMolonasPng from '../images/tarjetas-molonas.png';
+import tarjetasMolonasSvg from '../images/tarjetas-molonas.svg';
+//import tarjetas-molonas - 2x from '../images/tarjetas-molonas@2x.png';
+//import tarjetas-molonas - 3x from '../images/tarjetas-molonas@3x.png';
+//import photo-image from '../images/photo__imag.jpg';
+
+
+import '../stylesheets/App.scss';
 
 function App() {
   return (
@@ -9,7 +16,7 @@ function App() {
           <a href="./index.html" alt="home" title="Home">
             <img
               className="form__header--image"
-              src="./assets/images/tarjetas-molonas.svg"
+              src={tarjetasMolonasSvg}
               alt="Awesome cards"
               srcset=""
             /></a>
@@ -146,12 +153,9 @@ function App() {
                     className="hide--input js__input fill__form--input photo"
                   />
                 </label>
-                { /* <button type='button' className='fill__form--input photo'>
-
-                </button>   */}
 
                 <div className="fill__form--input photo__square">
-                  { /* <img className='square' /> */}
+
                 </div>
 
                 <label className="fill__form--label" htmlFor="email"> Email</label>
@@ -169,7 +173,6 @@ function App() {
                   id="telFill"
                   type="tel"
                   placeholder=" Ej: 555-55-55-55"
-                // ^[0-9]{9}$
                 />
 
                 <label className="fill__form--label" htmlFor="linkedin"> Linkedin</label>
@@ -219,7 +222,7 @@ function App() {
           <h6 className="footer__copyright">ochoPinocho for awesome profile-cards @2021</h6>
           <img
             className="footer__image"
-            src="./assets/images/logo-adalab.png"
+            src={logoAdalab}
             alt="logo Adalab"
             title="Logo de Adalab"
           />
