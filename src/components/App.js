@@ -1,14 +1,17 @@
-import logoAdalab from '../images/logo-adalab.png';
+import React, { useState } from "react";
+import logoAdalab from "../images/logo-adalab.png";
 //import tarjetasMolonasPng from '../images/tarjetas-molonas.png';
-import tarjetasMolonasSvg from '../images/tarjetas-molonas.svg';
+import tarjetasMolonasSvg from "../images/tarjetas-molonas.svg";
 //import tarjetas-molonas - 2x from '../images/tarjetas-molonas@2x.png';
 //import tarjetas-molonas - 3x from '../images/tarjetas-molonas@3x.png';
 //import photo-image from '../images/photo__imag.jpg';
-
-
-import '../stylesheets/App.scss';
+import "../stylesheets/App.scss";
 
 function App() {
+  const [palette, setPalete] = useState("");
+  const handleChangeColor = (event) => {
+    setPalete(event.target.value);
+  };
   return (
     <div className="App">
       <div className="page">
@@ -18,8 +21,8 @@ function App() {
               className="form__header--image"
               src={tarjetasMolonasSvg}
               alt="Awesome cards"
-              srcset=""
-            /></a>
+            />
+          </a>
         </header>
 
         <main className="card">
@@ -32,41 +35,47 @@ function App() {
                 <li className="photo__reset--text">Reset</li>
               </ul>
             </div>
-            <div className="photo__card--container js-photo">
-              <div class="photo__card--rectangle"></div>
-              <p class="photo__card--name">Nombre Apellido</p>
-              <p class="photo__card--frontend">Front-end developer</p>
-              <div class="photo__card--photo" id="photo"></div>
-              <div class="photo__card--rrss">
+            <div
+              className={`photo__card--container js-photo palette-${palette}`}
+            >
+              <div className="photo__card--rectangle"></div>
+              <p className="photo__card--name">Nombre Apellido</p>
+              <p className="photo__card--frontend">Front-end developer</p>
+              <div className="photo__card--photo" id="photo"></div>
+              <div className="photo__card--rrss">
                 <a href="" id="telLink" target="_blank">
-                  <i class="fas fa-mobile-alt photo__card--rrss-icon"></i
-                  ></a>
-                <a href="" id="emailLink" target="_blank"
-                ><i class="far fa-envelope photo__card--rrss-icon"></i
-                ></a>
-                <a href="" id="linkedinLink" target="_blank"
-                ><i class="fab fa-linkedin-in photo__card--rrss-icon"></i
-                ></a>
-                <a href="" id="githubLink" target="_blank"
-                ><i class="fab fa-github-alt photo__card--rrss-icon"></i
-                ></a>
+                  <i className="fas fa-mobile-alt photo__card--rrss-icon"></i>
+                </a>
+                <a href="" id="emailLink" target="_blank">
+                  <i className="far fa-envelope photo__card--rrss-icon"></i>
+                </a>
+                <a href="" id="linkedinLink" target="_blank">
+                  <i className="fab fa-linkedin-in photo__card--rrss-icon"></i>
+                </a>
+                <a href="" id="githubLink" target="_blank">
+                  <i className="fab fa-github-alt photo__card--rrss-icon"></i>
+                </a>
               </div>
             </div>
           </section>
           <form className="form" action="">
             <legend className="design__legend">
               <div className="form__parameters">
-                <h2 className="form__title"><i className="far fa-object-ungroup form__icon"></i>Diseña</h2>
+                <h2 className="form__title">
+                  <i className="far fa-object-ungroup form__icon"></i>Diseña
+                </h2>
                 <i className="fas fa-chevron-down design__arrow form__arrow js__collapsable"></i>
               </div>
 
-
               <fieldset className="hidden design__check js__fieldset">
-                <label className="design__check--colors" htmlFor="color">colores</label>
+                <label className="design__check--colors" htmlFor="color">
+                  colores
+                </label>
 
                 <section className="design__check--section">
                   <input
-                    className="js-palette-1"
+                    onChange={handleChangeColor}
+                    className="palette"
                     type="radio"
                     id="palette"
                     name="color"
@@ -82,7 +91,8 @@ function App() {
 
                 <section className="design__check--section">
                   <input
-                    className="js-palette-2"
+                    onChange={handleChangeColor}
+                    className="palette"
                     type="radio"
                     id="palette"
                     name="color"
@@ -97,7 +107,8 @@ function App() {
                 </section>
                 <section className="design__check--section">
                   <input
-                    className="js-palette-3"
+                    onChange={handleChangeColor}
+                    className="palette"
                     type="radio"
                     id="palette"
                     name="color"
@@ -110,6 +121,7 @@ function App() {
                     <div className="box box__9"></div>
                   </section>
                 </section>
+
                 <hr />
               </fieldset>
               <hr className="form__line" />
@@ -117,12 +129,17 @@ function App() {
 
             <legend className="fill">
               <div className="form__parameters">
-                <h2 className="form__title"><i className="far fa-keyboard form__icon"></i>Rellena</h2>
+                <h2 className="form__title">
+                  <i className="far fa-keyboard form__icon"></i>Rellena
+                </h2>
                 <i className="fas fa-chevron-down fill__arrow form__arrow js__collapsable"></i>
               </div>
 
               <fieldset className="hidden fill__form js__fieldset">
-                <label className="fill__form--label" htmlFor="name"> Nombre Completo</label>
+                <label className="fill__form--label" htmlFor="name">
+                  {" "}
+                  Nombre Completo
+                </label>
                 <input
                   className="fill__form--input name"
                   id="fullname"
@@ -131,7 +148,10 @@ function App() {
                   required
                 />
 
-                <label className="fill__form--label" htmlFor="job"> Puesto</label>
+                <label className="fill__form--label" htmlFor="job">
+                  {" "}
+                  Puesto
+                </label>
                 <input
                   className="fill__form--input job"
                   id="job"
@@ -140,12 +160,18 @@ function App() {
                   required
                 />
 
-                <label className="fill__form--label" htmlFor="photo photo__square">
-                  Imagen de perfil</label
+                <label
+                  className="fill__form--label"
+                  htmlFor="photo photo__square"
                 >
+                  Imagen de perfil
+                </label>
 
-                <label htmlFor="imgselector" className="fill__form--input photo"
-                >Añadir imagen
+                <label
+                  htmlFor="imgselector"
+                  className="fill__form--input photo"
+                >
+                  Añadir imagen
                   <input
                     type="file"
                     id="imgselector"
@@ -154,11 +180,12 @@ function App() {
                   />
                 </label>
 
-                <div className="fill__form--input photo__square">
+                <div className="fill__form--input photo__square"></div>
 
-                </div>
-
-                <label className="fill__form--label" htmlFor="email"> Email</label>
+                <label className="fill__form--label" htmlFor="email">
+                  {" "}
+                  Email
+                </label>
                 <input
                   className="fill__form--input email"
                   id="emailFill"
@@ -167,7 +194,10 @@ function App() {
                   required
                 />
 
-                <label className="fill__form--label" htmlFor="tel"> Teléfono</label>
+                <label className="fill__form--label" htmlFor="tel">
+                  {" "}
+                  Teléfono
+                </label>
                 <input
                   className="fill__form--input tel"
                   id="telFill"
@@ -175,7 +205,10 @@ function App() {
                   placeholder=" Ej: 555-55-55-55"
                 />
 
-                <label className="fill__form--label" htmlFor="linkedin"> Linkedin</label>
+                <label className="fill__form--label" htmlFor="linkedin">
+                  {" "}
+                  Linkedin
+                </label>
                 <input
                   className="fill__form--input linkedin"
                   id="linkedinFill"
@@ -183,7 +216,10 @@ function App() {
                   placeholder=" Ej: linkedin.com/in/sally.hill"
                 />
 
-                <label className="fill__form--label" htmlFor="github"> Github</label>
+                <label className="fill__form--label" htmlFor="github">
+                  {" "}
+                  Github
+                </label>
                 <input
                   className="fill__form--input github"
                   id="githubFill"
@@ -196,7 +232,9 @@ function App() {
 
             <legend className="share">
               <div className="form__parameters">
-                <h2 className="form__title"><i className="fas fa-share-alt form__icon"></i>Comparte</h2>
+                <h2 className="form__title">
+                  <i className="fas fa-share-alt form__icon"></i>Comparte
+                </h2>
                 <i className="fas fa-chevron-down share__arrow form__arrow js__collapsable"></i>
               </div>
 
@@ -214,12 +252,13 @@ function App() {
               </fieldset>
               <hr className="form__line" />
             </legend>
-
           </form>
         </main>
 
         <footer className="footer">
-          <h6 className="footer__copyright">ochoPinocho for awesome profile-cards @2021</h6>
+          <h6 className="footer__copyright">
+            ochoPinocho for awesome profile-cards @2021
+          </h6>
           <img
             className="footer__image"
             src={logoAdalab}
@@ -227,9 +266,8 @@ function App() {
             title="Logo de Adalab"
           />
         </footer>
-
       </div>
-    </div >
+    </div>
   );
 }
 
