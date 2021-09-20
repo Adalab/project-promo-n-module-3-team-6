@@ -12,6 +12,13 @@ function App() {
   const handleChangeColor = (event) => {
     setPalete(event.target.value);
   };
+
+  const [fullName, setFullName] = useState("Nombre Completo");
+  const handleFullName = (event) => {
+    setFullName(event.target.value);
+
+  };
+
   return (
     <div className="App">
       <div className="page">
@@ -39,7 +46,7 @@ function App() {
               className={`photo__card--container js-photo palette-${palette}`}
             >
               <div className="photo__card--rectangle"></div>
-              <p className="photo__card--name">Nombre Apellido</p>
+              <p className="photo__card--name">{fullName}</p>
               <p className="photo__card--frontend">Front-end developer</p>
               <div className="photo__card--photo" id="photo"></div>
               <div className="photo__card--rrss">
@@ -141,11 +148,12 @@ function App() {
                   Nombre Completo
                 </label>
                 <input
-                  className="fill__form--input name"
+                  className="fill__form--input name" onChange={handleChangeColor}
                   id="fullname"
                   type="text"
                   placeholder=" Ej: Sally Jill"
                   required
+                  onKeyUp={handleFullName}
                 />
 
                 <label className="fill__form--label" htmlFor="job">
