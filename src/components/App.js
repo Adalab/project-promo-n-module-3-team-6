@@ -13,10 +13,9 @@ function App() {
     setPalete(event.target.value);
   };
 
-  const [fullName, setFullName] = useState("Nombre Completo");
+  const [fullName, setFullName] = useState("");
   const handleFullName = (event) => {
     setFullName(event.target.value);
-
   };
 
   return (
