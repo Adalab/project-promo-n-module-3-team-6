@@ -12,6 +12,77 @@ function App() {
   const handleChangeColor = (event) => {
     setPalete(event.target.value);
   };
+  const [data, setData] = useState({
+    palette: 1,
+    name: "",
+    job: "",
+    email: "",
+    phone: "",
+    linkedin:"",
+    github:"",
+  });
+
+  const handleInput = (ev) => {
+    const whichInput = ev.currentTarget.id;
+
+    switch (whichInput){
+      case "fullname": setData({
+        ...data, // Spread operator
+        name: ev.currentTarget.value,
+      })
+      break;
+      case "job": setData({
+        ...data, // Spread operator
+        job: ev.currentTarget.value,
+      })
+      break;
+      case "phoneFill": setData({
+        ...data, // Spread operator
+        phone: ev.currentTarget.value,
+      })
+      break;
+      case "emailFill": setData({
+        ...data, // Spread operator
+        email: ev.currentTarget.value,
+      })
+      break;
+      case "linkedinFill": setData({
+        ...data, // Spread operator
+        linkedin: ev.currentTarget.value,
+      })
+      break;
+      case "githubFill": setData({
+        ...data, // Spread operator
+        github: ev.currentTarget.value,
+      })
+      break;
+      default:console.error("opcionNoValida");
+    }
+
+    // if (whichInput === "name") {
+    //   setData({
+    //     ...data, // Spread operator
+    //     name: ev.currentTarget.value,
+    //   });
+    // } else if (whichInput === "job") {
+    //   setData({
+    //     ...data, // Spread operator
+    //     job: ev.currentTarget.value,
+    //   });
+    // }
+    // else if (whichInput === "email") {
+    //   setData({
+    //     ...data, // Spread operator
+    //     email: ev.currentTarget.value,
+    //   });
+    // }
+    // else if (whichInput === "phone") {
+    //   setData({
+    //     ...data, // Spread operator
+    //     phone: ev.currentTarget.value,
+    //   });
+    // }
+  };
   return (
     <div className="App">
       <div className="page">
@@ -39,20 +110,20 @@ function App() {
               className={`photo__card--container js-photo palette-${palette}`}
             >
               <div className="photo__card--rectangle"></div>
-              <p className="photo__card--name">Nombre Apellido</p>
-              <p className="photo__card--frontend">Front-end developer</p>
+              <p className="photo__card--name">{data.name === "" ? "Nombre Completo" : data.name}</p>
+              <p className="photo__card--frontend">{data.job === "" ? "Front-end devel" : data.job}</p>
               <div className="photo__card--photo" id="photo"></div>
               <div className="photo__card--rrss">
-                <a href="" id="telLink" target="_blank">
+                <a href={data.phone === "" ? "" :`tel+${data.phone}`} id="telLink" target="_blank" rel="noreferrer">
                   <i className="fas fa-mobile-alt photo__card--rrss-icon"></i>
                 </a>
-                <a href="" id="emailLink" target="_blank">
+                <a href={data.email === "" ? "" :`mailto:+${data.email}`}id="emailLink" target="_blank" rel="noreferrer">
                   <i className="far fa-envelope photo__card--rrss-icon"></i>
                 </a>
-                <a href="" id="linkedinLink" target="_blank">
+                <a href={data.linkedin === "" ? "" :`www.linkedin.com/+${data.linkedin}`} id="linkedinLink" target="_blank" rel="noreferrer">
                   <i className="fab fa-linkedin-in photo__card--rrss-icon"></i>
                 </a>
-                <a href="" id="githubLink" target="_blank">
+                <a href={data.github === "" ? "" :`www.github.com/+${data.github}`} id="githubLink" target="_blank" rel="noreferrer">
                   <i className="fab fa-github-alt photo__card--rrss-icon"></i>
                 </a>
               </div>
@@ -145,6 +216,7 @@ function App() {
                   id="fullname"
                   type="text"
                   placeholder=" Ej: Sally Jill"
+                  onChange={handleInput}
                   required
                 />
 
@@ -157,6 +229,7 @@ function App() {
                   id="job"
                   type="text"
                   placeholder=" Ej: Front-end unicorn"
+                  onChange={handleInput}
                   required
                 />
 
@@ -203,6 +276,7 @@ function App() {
                   id="telFill"
                   type="tel"
                   placeholder=" Ej: 555-55-55-55"
+                  onChange={handleInput}
                 />
 
                 <label className="fill__form--label" htmlFor="linkedin">
