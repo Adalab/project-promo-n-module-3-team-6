@@ -5,87 +5,76 @@ import tarjetasMolonasSvg from "../images/tarjetas-molonas.svg";
 //import tarjetas-molonas - 2x from '../images/tarjetas-molonas@2x.png';
 //import tarjetas-molonas - 3x from '../images/tarjetas-molonas@3x.png';
 //import photo-image from '../images/photo__imag.jpg';
+
+// IMPORTAR ESTILOS
 import "../stylesheets/App.scss";
 
+
 function App() {
+
+  // COSTANTE DE ESTADO DE PALETAS
   const [palette, setPalete] = useState("");
-  const handleChangeColor = (event) => {
-    setPalete(event.target.value);
-  };
+
+  // COSTANTE DE ESTADO DE PREVIEW
   const [data, setData] = useState({
     palette: 1,
     name: "",
     job: "",
     email: "",
     phone: "",
-    linkedin:"",
-    github:"",
+    linkedin: "",
+    github: "",
   });
 
+  // FUNCION MANEJADORA DE PINTAR PREVIEW EN BASE A LAS PALETAS SELECCIONADAS
+  const handleChangeColor = (ev) => {
+    setPalete(ev.target.value);
+  };
+
+  // FUNCION MANEJADORA DE REYENAR PREVIEW EN BASE A LOS INPUTS RELLENADOS
   const handleInput = (ev) => {
     const whichInput = ev.currentTarget.id;
 
-    switch (whichInput){
-      case "fullname": setData({
+    switch (whichInput) {
+      case "fullName": setData({
         ...data, // Spread operator
         name: ev.currentTarget.value,
       })
-      break;
+        break;
       case "job": setData({
         ...data, // Spread operator
         job: ev.currentTarget.value,
       })
-      break;
-      case "phoneFill": setData({
+        break;
+      case "telFill": setData({
         ...data, // Spread operator
         phone: ev.currentTarget.value,
       })
-      break;
+        break;
       case "emailFill": setData({
         ...data, // Spread operator
         email: ev.currentTarget.value,
       })
-      break;
+        break;
       case "linkedinFill": setData({
         ...data, // Spread operator
         linkedin: ev.currentTarget.value,
       })
-      break;
+        break;
       case "githubFill": setData({
         ...data, // Spread operator
         github: ev.currentTarget.value,
       })
-      break;
-      default:console.error("opcionNoValida");
+        break;
+      default: console.error("opcionNoValida");
     }
-
-    // if (whichInput === "name") {
-    //   setData({
-    //     ...data, // Spread operator
-    //     name: ev.currentTarget.value,
-    //   });
-    // } else if (whichInput === "job") {
-    //   setData({
-    //     ...data, // Spread operator
-    //     job: ev.currentTarget.value,
-    //   });
-    // }
-    // else if (whichInput === "email") {
-    //   setData({
-    //     ...data, // Spread operator
-    //     email: ev.currentTarget.value,
-    //   });
-    // }
-    // else if (whichInput === "phone") {
-    //   setData({
-    //     ...data, // Spread operator
-    //     phone: ev.currentTarget.value,
-    //   });
-    // }
   };
+
+  //HTML Y PARTE RENDERIZADA
   return (
     <div className="App">
       <div className="page">
+        {/* HEADER */}
         <header className="form__header">
           <a href="./index.html" alt="home" title="Home">
             <img
@@ -96,8 +85,12 @@ function App() {
           </a>
         </header>
 
+        {/* MAIN*/}
         <main className="card">
+          {/* PREVIEW*/}
+
           <section className="photo__container">
+            {/* PREVIEW - RESET*/}
             <div className="photo__reset--container">
               <ul className="photo__reset--menu">
                 <li className="photo__reset--text">
@@ -110,35 +103,39 @@ function App() {
               className={`photo__card--container js-photo palette-${palette}`}
             >
               <div className="photo__card--rectangle"></div>
+
+              {/* PREVIEW - DATOS*/}
               <p className="photo__card--name">{data.name === "" ? "Nombre Completo" : data.name}</p>
-              <p className="photo__card--frontend">{data.job === "" ? "Front-end devel" : data.job}</p>
+              <p className="photo__card--frontend">{data.job === "" ? "Front-end developer" : data.job}</p>
               <div className="photo__card--photo" id="photo"></div>
               <div className="photo__card--rrss">
-                <a href={data.phone === "" ? "" :`tel+${data.phone}`} id="telLink" target="_blank" rel="noreferrer">
+                <a href={data.phone === "" ? "" : `tel:${data.phone}`} id="telLink" target="_blank" rel="noreferrer">
                   <i className="fas fa-mobile-alt photo__card--rrss-icon"></i>
                 </a>
-                <a href={data.email === "" ? "" :`mailto:+${data.email}`}id="emailLink" target="_blank" rel="noreferrer">
+                <a href={data.email === "" ? "" : `mailto:${data.email}`} id="emailLink" target="_blank" rel="noreferrer">
                   <i className="far fa-envelope photo__card--rrss-icon"></i>
                 </a>
-                <a href={data.linkedin === "" ? "" :`www.linkedin.com/+${data.linkedin}`} id="linkedinLink" target="_blank" rel="noreferrer">
+                <a href={data.linkedin === " " ? "" : `https://www.linkedin.com/${data.linkedin}`} id="linkedinLink" target="_blank" rel="noreferrer">
                   <i className="fab fa-linkedin-in photo__card--rrss-icon"></i>
                 </a>
-                <a href={data.github === "" ? "" :`www.github.com/+${data.github}`} id="githubLink" target="_blank" rel="noreferrer">
+                <a href={data.github === " " ? "" : `https://www.github.com/${data.github}`} id="githubLink" target="_blank" rel="noreferrer">
                   <i className="fab fa-github-alt photo__card--rrss-icon"></i>
                 </a>
               </div>
             </div>
           </section>
+
           <form className="form" action="">
+            {/* FORMULARIO - DISEÑO*/}
             <legend className="design__legend">
-              <div className="form__parameters">
+              <div className="form__parameters" id="design">
                 <h2 className="form__title">
                   <i className="far fa-object-ungroup form__icon"></i>Diseña
                 </h2>
-                <i className="fas fa-chevron-down design__arrow form__arrow js__collapsable"></i>
+                <i className={`fas fa-chevron-down design__arrow form__arrow js__collapsable`}></i>
               </div>
 
-              <fieldset className="hidden design__check js__fieldset">
+              <fieldset className={` design__check js__fieldset`}>
                 <label className="design__check--colors" htmlFor="color">
                   colores
                 </label>
@@ -198,22 +195,23 @@ function App() {
               <hr className="form__line" />
             </legend>
 
+            {/* FORMULARIO - RELLENA*/}
             <legend className="fill">
-              <div className="form__parameters">
+              <div className="form__parameters" id="fill">
                 <h2 className="form__title">
                   <i className="far fa-keyboard form__icon"></i>Rellena
                 </h2>
-                <i className="fas fa-chevron-down fill__arrow form__arrow js__collapsable"></i>
+                <i className={`fas fa-chevron-down fill__arrow form__arrow js__collapsable`}></i>
               </div>
 
-              <fieldset className="hidden fill__form js__fieldset">
+              <fieldset className={`fill__form js__fieldset`}>
                 <label className="fill__form--label" htmlFor="name">
                   {" "}
                   Nombre Completo
                 </label>
                 <input
                   className="fill__form--input name"
-                  id="fullname"
+                  id="fullName"
                   type="text"
                   placeholder=" Ej: Sally Jill"
                   onChange={handleInput}
@@ -264,6 +262,7 @@ function App() {
                   id="emailFill"
                   type="email"
                   placeholder=" Ej: sally-hill@gmail.com"
+                  onChange={handleInput}
                   required
                 />
 
@@ -287,7 +286,8 @@ function App() {
                   className="fill__form--input linkedin"
                   id="linkedinFill"
                   type="text"
-                  placeholder=" Ej: linkedin.com/in/sally.hill"
+                  placeholder=" Ej: sally.hill"
+                  onChange={handleInput}
                 />
 
                 <label className="fill__form--label" htmlFor="github">
@@ -298,12 +298,14 @@ function App() {
                   className="fill__form--input github"
                   id="githubFill"
                   type="text"
-                  placeholder=" Ej: @sally-hill"
+                  placeholder=" Ej: sally-hill"
+                  onChange={handleInput}
                 />
               </fieldset>
               <hr className="form__line" />
             </legend>
 
+            {/* FORMULARIO - COMPARTE*/}
             <legend className="share">
               <div className="form__parameters">
                 <h2 className="form__title">
@@ -329,6 +331,7 @@ function App() {
           </form>
         </main>
 
+        {/* FOOTER*/}
         <footer className="footer">
           <h6 className="footer__copyright">
             ochoPinocho for awesome profile-cards @2021
