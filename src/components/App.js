@@ -26,6 +26,42 @@ function App() {
     github: "",
   });
 
+  const [collapsableDesign, deployCollapsableDesign] = useState("");
+  const [arrowDesign, rotateArrowDesign] = useState("");
+  const [collapsableFill, deployCollapsableFill] = useState("hidden");
+  const [arrowFill, rotateArrowFill] = useState("");
+  const [collapsableShare, deployCollapsableShare] = useState("hidden");
+  const [arrowShare, rotateArrowShare] = useState("");
+
+  const handleCollapsable = (ev) => {
+    const clickSection = ev.currentTarget.id;
+    console.log(clickSection);
+    if (clickSection === "design") {
+      deployCollapsableDesign("");
+      rotateArrowDesign("");
+      deployCollapsableFill("hidden");
+      rotateArrowFill("form__arrow--rotate");
+      deployCollapsableShare("hidden");
+      rotateArrowShare("form__arrow--rotate");
+    }
+    else if (clickSection === "fill") {
+      deployCollapsableFill("");
+      rotateArrowFill("");
+      deployCollapsableShare("hidden");
+      rotateArrowShare("form__arrow--rotate");
+      deployCollapsableDesign("hidden");
+      rotateArrowDesign("form__arrow--rotate");
+    }
+    else if (clickSection === "share") {
+      deployCollapsableShare("");
+      rotateArrowShare("");
+      deployCollapsableDesign("hidden");
+      rotateArrowDesign("form__arrow--rotate");
+      deployCollapsableFill("hidden");
+      rotateArrowFill("form__arrow--rotate");
+    }
+  }
+
   // FUNCION MANEJADORA DE PINTAR PREVIEW EN BASE A LAS PALETAS SELECCIONADAS
   const handleChangeColor = (ev) => {
     setPalete(ev.target.value);
@@ -128,14 +164,14 @@ function App() {
           <form className="form" action="">
             {/* FORMULARIO - DISEÑO*/}
             <legend className="design__legend">
-              <div className="form__parameters" id="design">
+              <div className="form__parameters" id="design" onClick={handleCollapsable}>
                 <h2 className="form__title">
                   <i className="far fa-object-ungroup form__icon"></i>Diseña
                 </h2>
-                <i className={`fas fa-chevron-down design__arrow form__arrow js__collapsable`}></i>
+                <i className={`fas fa-chevron-down design__arrow form__arrow js__collapsable ${arrowDesign}`}></i>
               </div>
 
-              <fieldset className={` design__check js__fieldset`}>
+              <fieldset className={`design__check js__fieldset ${collapsableDesign}`}>
                 <label className="design__check--colors" htmlFor="color">
                   colores
                 </label>
@@ -197,14 +233,14 @@ function App() {
 
             {/* FORMULARIO - RELLENA*/}
             <legend className="fill">
-              <div className="form__parameters" id="fill">
+              <div className="form__parameters" id="fill" onClick={handleCollapsable}>
                 <h2 className="form__title">
                   <i className="far fa-keyboard form__icon"></i>Rellena
                 </h2>
-                <i className={`fas fa-chevron-down fill__arrow form__arrow js__collapsable`}></i>
+                <i className={`fas fa-chevron-down fill__arrow form__arrow js__collapsable ${arrowFill}`}></i>
               </div>
 
-              <fieldset className={`fill__form js__fieldset`}>
+              <fieldset className={`fill__form js__fieldset ${collapsableFill}`}>
                 <label className="fill__form--label" htmlFor="name">
                   {" "}
                   Nombre Completo
@@ -307,14 +343,14 @@ function App() {
 
             {/* FORMULARIO - COMPARTE*/}
             <legend className="share">
-              <div className="form__parameters">
+              <div className="form__parameters" id="share" onClick={handleCollapsable}>
                 <h2 className="form__title">
                   <i className="fas fa-share-alt form__icon"></i>Comparte
                 </h2>
-                <i className="fas fa-chevron-down share__arrow form__arrow js__collapsable"></i>
+                <i className={`fas fa-chevron-down share__arrow form__arrow js__collapsable ${arrowShare}`}></i>
               </div>
 
-              <fieldset className="hidden dropdown js__fieldset">
+              <fieldset className={` dropdown js__fieldset ${collapsableShare}`}>
                 <button className="dropdown__button--create">
                   <i className="far fa-address-card"></i> Crear tarjeta
                 </button>
