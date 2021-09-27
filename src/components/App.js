@@ -1,10 +1,14 @@
 import React, { useState } from "react";
-import logoAdalab from "../images/logo-adalab.png";
+//IMPORTAR IMÁGENES
+
 //import tarjetasMolonasPng from '../images/tarjetas-molonas.png';
-import tarjetasMolonasSvg from "../images/tarjetas-molonas.svg";
 //import tarjetas-molonas - 2x from '../images/tarjetas-molonas@2x.png';
 //import tarjetas-molonas - 3x from '../images/tarjetas-molonas@3x.png';
 //import photo-image from '../images/photo__imag.jpg';
+//IMPORTAR COMPONENTES
+import Header from "./Header";
+import Preview from "./Preview";
+import Footer from "./Footer";
 
 // IMPORTAR ESTILOS
 import "../stylesheets/App.scss";
@@ -110,56 +114,14 @@ function App() {
   return (
     <div className="App">
       <div className="page">
-        {/* HEADER */}
-        <header className="form__header">
-          <a href="./index.html" alt="home" title="Home">
-            <img
-              className="form__header--image"
-              src={tarjetasMolonasSvg}
-              alt="Awesome cards"
-            />
-          </a>
-        </header>
+
+        <Header />
 
         {/* MAIN*/}
         <main className="card">
           {/* PREVIEW*/}
 
-          <section className="photo__container">
-            {/* PREVIEW - RESET*/}
-            <div className="photo__reset--container">
-              <ul className="photo__reset--menu">
-                <li className="photo__reset--text">
-                  <i className="far fa-trash-alt"></i>
-                </li>
-                <li className="photo__reset--text">Reset</li>
-              </ul>
-            </div>
-            <div
-              className={`photo__card--container js-photo palette-${palette}`}
-            >
-              <div className="photo__card--rectangle"></div>
-
-              {/* PREVIEW - DATOS*/}
-              <p className="photo__card--name">{data.name === "" ? "Nombre Completo" : data.name}</p>
-              <p className="photo__card--frontend">{data.job === "" ? "Front-end developer" : data.job}</p>
-              <div className="photo__card--photo" id="photo"></div>
-              <div className="photo__card--rrss">
-                <a href={data.phone === "" ? "" : `tel:${data.phone}`} id="telLink" target="_blank" rel="noreferrer">
-                  <i className="fas fa-mobile-alt photo__card--rrss-icon"></i>
-                </a>
-                <a href={data.email === "" ? "" : `mailto:${data.email}`} id="emailLink" target="_blank" rel="noreferrer">
-                  <i className="far fa-envelope photo__card--rrss-icon"></i>
-                </a>
-                <a href={data.linkedin === " " ? "" : `https://www.linkedin.com/${data.linkedin}`} id="linkedinLink" target="_blank" rel="noreferrer">
-                  <i className="fab fa-linkedin-in photo__card--rrss-icon"></i>
-                </a>
-                <a href={data.github === " " ? "" : `https://www.github.com/${data.github}`} id="githubLink" target="_blank" rel="noreferrer">
-                  <i className="fab fa-github-alt photo__card--rrss-icon"></i>
-                </a>
-              </div>
-            </div>
-          </section>
+          <Preview dataPreview={data} paletePreview={palette} handlePreviewColor={handleChangeColor} />
 
           <form className="form" action="">
             {/* FORMULARIO - DISEÑO*/}
@@ -368,17 +330,7 @@ function App() {
         </main>
 
         {/* FOOTER*/}
-        <footer className="footer">
-          <h6 className="footer__copyright">
-            ochoPinocho for awesome profile-cards @2021
-          </h6>
-          <img
-            className="footer__image"
-            src={logoAdalab}
-            alt="logo Adalab"
-            title="Logo de Adalab"
-          />
-        </footer>
+        <Footer />
       </div>
     </div>
   );
