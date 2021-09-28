@@ -31,13 +31,22 @@ function App() {
     github: "",
   });
 
+
+  // COSTANTE DE ESTADO DE COLLAPSABLES
   const [collapsableDesign, deployCollapsableDesign] = useState("");
   const [arrowDesign, rotateArrowDesign] = useState("");
   const [collapsableFill, deployCollapsableFill] = useState("hidden");
   const [arrowFill, rotateArrowFill] = useState("");
   const [collapsableShare, deployCollapsableShare] = useState("hidden");
   const [arrowShare, rotateArrowShare] = useState("");
+  const [collapsableShareLink, deployCollapsableSharelink] = useState("hidden");
 
+  //EVENTO COLLAPSABLE SHARE LINK
+  const handleCollapsableShareLink = () => {
+    deployCollapsableSharelink("");
+  }
+
+  //EVENTO COLLAPSABLE
   const handleCollapsable = (ev) => {
     const clickSection = ev.currentTarget.id;
     console.log(clickSection);
@@ -125,7 +134,7 @@ function App() {
           <Preview dataPreview={data} paletePreview={palette} />
 
           {/* FORM*/}
-          <Form handleCollapsable={handleCollapsable} arrowDesign={arrowDesign} collapsableDesign={collapsableDesign} handleChangeColor={handleChangeColor} arrowFill={arrowFill} collapsableFill={collapsableFill} handleInput={handleInput} arrowShare={arrowShare} collapsableShare={collapsableShare} />
+          <Form handleCollapsable={handleCollapsable} arrowDesign={arrowDesign} collapsableDesign={collapsableDesign} handleChangeColor={handleChangeColor} arrowFill={arrowFill} collapsableFill={collapsableFill} handleInput={handleInput} arrowShare={arrowShare} collapsableShare={collapsableShare} collapsableShareLink={collapsableShareLink} handleCollapsableShareLink={handleCollapsableShareLink} />
         </main>
 
         {/* FOOTER*/}

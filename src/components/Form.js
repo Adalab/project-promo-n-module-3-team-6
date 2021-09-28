@@ -194,10 +194,10 @@ const Form = (props) => {
                     </div>
 
                     <fieldset className={` dropdown js__fieldset ${props.collapsableShare}`}>
-                        <button className="dropdown__button--create">
+                        <button className="dropdown__button--create" onClick={props.handleCollapsableShareLink}>
                             <i className="far fa-address-card"></i> Crear tarjeta
                         </button>
-                        <div className="share__section--done js_card--done hidden">
+                        <div className={`share__section--done  ${props.collapsableShareLink}`}>
                             <h2 className="share__section--done__text js_undone">
                                 La tarjeta ha sido creada:
                             </h2>
@@ -210,12 +210,6 @@ const Form = (props) => {
                                     <i className="icon3 fab fa-twitter"></i> &nbsp; Compartir en twitter</a>
                             </button>
                         </div>
-                        {/*  Aquí iría html de cuando se crea la tarjeta
-            <p className='dropdown__message'>La tarjeta ha sido creada</p>
-            <button className='dropdown__button--tw'>
-              <i className='fab fa-twitter'></i>Compartir en twitter
-            </button>
-          </div>  */}
                     </fieldset>
                     <hr className="form__line" />
                 </legend>
