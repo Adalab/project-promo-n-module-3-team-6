@@ -2,10 +2,9 @@
 import "../stylesheets/Preview.scss";
 
 const Preview = (props) => {
-    // handlePreviewColor: () => ;
 
     return (
-        < div >
+        <div >
             <section className="photo__container">
 
                 <div className="photo__reset--container">
@@ -17,7 +16,7 @@ const Preview = (props) => {
                     </ul>
                 </div>
                 <div
-                    className={`photo__card--container js-photo palette-${props.palettePreview}`}
+                    className={`photo__card--container js-photo palette-${props.paletePreview}`}
                 >
                     <div className="photo__card--rectangle"></div>
 
