@@ -1,3 +1,4 @@
+import "../stylesheets/App.scss";
 import React, { useState } from "react";
 //IMPORTAR IMÁGENES
 
@@ -12,11 +13,8 @@ import Form from "./Form";
 import Footer from "./Footer";
 
 // IMPORTAR ESTILOS
-import "../stylesheets/App.scss";
-
 
 function App() {
-
   // COSTANTE DE ESTADO DE PALETAS
   const [palette, setPalete] = useState("");
 
@@ -31,7 +29,6 @@ function App() {
     github: "",
   });
 
-
   // COSTANTE DE ESTADO DE COLLAPSABLES
   const [collapsableDesign, deployCollapsableDesign] = useState("");
   const [arrowDesign, rotateArrowDesign] = useState("");
@@ -44,7 +41,7 @@ function App() {
   //EVENTO COLLAPSABLE SHARE LINK
   const handleCollapsableShareLink = () => {
     deployCollapsableSharelink("");
-  }
+  };
 
   //EVENTO COLLAPSABLE
   const handleCollapsable = (ev) => {
@@ -57,16 +54,14 @@ function App() {
       rotateArrowFill("form__arrow--rotate");
       deployCollapsableShare("hidden");
       rotateArrowShare("form__arrow--rotate");
-    }
-    else if (clickSection === "fill") {
+    } else if (clickSection === "fill") {
       deployCollapsableFill("");
       rotateArrowFill("");
       deployCollapsableShare("hidden");
       rotateArrowShare("form__arrow--rotate");
       deployCollapsableDesign("hidden");
       rotateArrowDesign("form__arrow--rotate");
-    }
-    else if (clickSection === "share") {
+    } else if (clickSection === "share") {
       deployCollapsableShare("");
       rotateArrowShare("");
       deployCollapsableDesign("hidden");
@@ -74,7 +69,7 @@ function App() {
       deployCollapsableFill("hidden");
       rotateArrowFill("form__arrow--rotate");
     }
-  }
+  };
 
   // FUNCION MANEJADORA DE PINTAR PREVIEW EN BASE A LAS PALETAS SELECCIONADAS
   const handleChangeColor = (ev) => {
@@ -86,37 +81,44 @@ function App() {
     const whichInput = ev.currentTarget.id;
 
     switch (whichInput) {
-      case "fullName": setData({
-        ...data, // Spread operator
-        name: ev.currentTarget.value,
-      })
+      case "fullName":
+        setData({
+          ...data, // Spread operator
+          name: ev.currentTarget.value,
+        });
         break;
-      case "job": setData({
-        ...data, // Spread operator
-        job: ev.currentTarget.value,
-      })
+      case "job":
+        setData({
+          ...data, // Spread operator
+          job: ev.currentTarget.value,
+        });
         break;
-      case "telFill": setData({
-        ...data, // Spread operator
-        phone: ev.currentTarget.value,
-      })
+      case "telFill":
+        setData({
+          ...data, // Spread operator
+          phone: ev.currentTarget.value,
+        });
         break;
-      case "emailFill": setData({
-        ...data, // Spread operator
-        email: ev.currentTarget.value,
-      })
+      case "emailFill":
+        setData({
+          ...data, // Spread operator
+          email: ev.currentTarget.value,
+        });
         break;
-      case "linkedinFill": setData({
-        ...data, // Spread operator
-        linkedin: ev.currentTarget.value,
-      })
+      case "linkedinFill":
+        setData({
+          ...data, // Spread operator
+          linkedin: ev.currentTarget.value,
+        });
         break;
-      case "githubFill": setData({
-        ...data, // Spread operator
-        github: ev.currentTarget.value,
-      })
+      case "githubFill":
+        setData({
+          ...data, // Spread operator
+          github: ev.currentTarget.value,
+        });
         break;
-      default: console.error("opcionNoValida");
+      default:
+        console.error("opcionNoValida");
     }
   };
 
@@ -124,17 +126,27 @@ function App() {
   return (
     <div className="App">
       <div className="page">
-
         <Header />
 
         {/* MAIN*/}
         <main className="card">
-
           {/* PREVIEW*/}
           <Preview dataPreview={data} paletePreview={palette} />
 
           {/* FORM*/}
-          <Form handleCollapsable={handleCollapsable} arrowDesign={arrowDesign} collapsableDesign={collapsableDesign} handleChangeColor={handleChangeColor} arrowFill={arrowFill} collapsableFill={collapsableFill} handleInput={handleInput} arrowShare={arrowShare} collapsableShare={collapsableShare} collapsableShareLink={collapsableShareLink} handleCollapsableShareLink={handleCollapsableShareLink} />
+          <Form
+            handleCollapsable={handleCollapsable}
+            arrowDesign={arrowDesign}
+            collapsableDesign={collapsableDesign}
+            handleChangeColor={handleChangeColor}
+            arrowFill={arrowFill}
+            collapsableFill={collapsableFill}
+            handleInput={handleInput}
+            arrowShare={arrowShare}
+            collapsableShare={collapsableShare}
+            collapsableShareLink={collapsableShareLink}
+            handleCollapsableShareLink={handleCollapsableShareLink}
+          />
         </main>
 
         {/* FOOTER*/}
