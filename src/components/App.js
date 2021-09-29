@@ -1,17 +1,10 @@
 import "../stylesheets/App.scss";
-import React, { useState } from "react";
-//IMPORTAR IMÁGENES
-
-//import tarjetasMolonasPng from '../images/tarjetas-molonas.png';
-//import tarjetas-molonas - 2x from '../images/tarjetas-molonas@2x.png';
-//import tarjetas-molonas - 3x from '../images/tarjetas-molonas@3x.png';
-//import photo-image from '../images/photo__imag.jpg';
-//IMPORTAR COMPONENTES
 import Header from "./Header";
 import Preview from "./Preview";
 import Form from "./Form";
 import Footer from "./Footer";
-
+import React, { useState, useEffect } from "react";
+import handleShareBtn from "../services/Api";
 // IMPORTAR ESTILOS
 
 function App() {
@@ -121,6 +114,54 @@ function App() {
         console.error("opcionNoValida");
     }
   };
+
+  useEffect(() => {
+    // Aquí podemos poner código JS, por ejemplo podríamos llamar a callToApi dentro de un if
+
+    // Llamamos al API pasando por parámetros el searchName
+    handleShareBtn(setData).then((response) => {
+      // Cuando el API responde guardamos los personajes en el estado
+      
+        console.log(formObject);
+      urlShare.innerHTML = data.cardURL;
+      urlShare.href = data.cardURL;
+
+      if (data.success) {
+        undoneTwitter.classList.remove('hidden');
+        cardDoneCollapsable.classList.remove('hidden');
+        const textCard = 'Mira mi tarjeta profesional 👩🏻‍💻 y contáctame para colaborar 🤳🏻 &hashtags=Adalabers,JavaScript,PromoNerea,teamUndefined';
+        twitterLink.href = `https://twitter.com/intent/tweet?text=${textCard}&url=${data.cardURL}`;
+
+      } else {
+        cardDoneCollapsable.classList.remove('hidden');
+        undoneShare.classList.add('hidden');
+        undoneTwitter.classList.add('hidden');
+
+        if (formObject.name === '') {
+          urlShare.innerHTML = 'Ups❕ 😓, debes rellenar tu nombre';
+        } else if (formObject.job === '') {
+          urlShare.innerHTML = 'Ups❕ 😓, debes rellenar tu profesión';
+        } else if (formObject.photo === '') {
+          urlShare.innerHTML = 'Ups❕ 😓, debes rellenar tu foto';
+        } else if (formObject.email === '') {
+          urlShare.innerHTML = 'Ups❕ 😓, debes rellenar tu email';
+        } else if (!validateEmail(formObject.email)) {
+          urlShare.innerHTML = 'Ups❕ 😓, debes rellenar correctamente tu email, falta un @ o algo más 😉';
+        } else if (formObject.phone === '') {
+          urlShare.innerHTML = 'Ups❕ 😓, debes rellenar tu móvil';
+        } else if (!validatePhone(formObject.phone)) {
+          urlShare.innerHTML = 'Ups❕ 😓, debes rellenar completo tu móvil, falta algo 😉';
+        } else if (formObject.linkedin === '') {
+          urlShare.innerHTML = 'Ups❕ 😓, debes rellenar tu linkedin';
+        } else if (formObject.github === '') {
+          urlShare.innerHTML = 'Ups❕ 😓, debes rellenar tu github';
+        } else if (formObject.palette === '') {
+          urlShare.innerHTML = 'Ups❕ 😓, debes escojer una paleta de colores 🌈';
+        }
+      };
+    }
+   
+  }, [setData]);
 
   //HTML Y PARTE RENDERIZADA
   return (
