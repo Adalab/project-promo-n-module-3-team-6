@@ -1,24 +1,31 @@
+//IMPORTAT ESTILOS
 import "../stylesheets/App.scss";
-import React, { useState } from "react";
-//IMPORTAR IMÁGENES
 
+//IMPORTAR HOOKS
+import React, { useEffect, useState } from "react";
+
+//IMPORTAR API
+import Api from '../services/Api';
+
+//IMPORTAR IMÁGENES
 //import tarjetasMolonasPng from '../images/tarjetas-molonas.png';
 //import tarjetas-molonas - 2x from '../images/tarjetas-molonas@2x.png';
 //import tarjetas-molonas - 3x from '../images/tarjetas-molonas@3x.png';
 //import photo-image from '../images/photo__imag.jpg';
+
 //IMPORTAR COMPONENTES
 import Header from "./Header";
 import Preview from "./Preview";
 import Form from "./Form";
 import Footer from "./Footer";
 
-// IMPORTAR ESTILOS
 
+//FUNCION PRINCIPAL
 function App() {
-  // COSTANTE DE ESTADO DE PALETAS
+  // VARIABLE DE ESTADO DE PALETAS
   const [palette, setPalete] = useState("");
 
-  // COSTANTE DE ESTADO DE PREVIEW
+  // VARIABLE DE ESTADO DE PREVIEW
   const [data, setData] = useState({
     palette: 1,
     name: "",
@@ -29,7 +36,10 @@ function App() {
     github: "",
   });
 
-  // COSTANTE DE ESTADO DE COLLAPSABLES
+  let [URLdata, setURLData] = useState('');
+
+
+  // VARIABLE DE ESTADO DE COLLAPSABLES
   const [collapsableDesign, deployCollapsableDesign] = useState("");
   const [arrowDesign, rotateArrowDesign] = useState("");
   const [collapsableFill, deployCollapsableFill] = useState("hidden");
@@ -39,8 +49,11 @@ function App() {
   const [collapsableShareLink, deployCollapsableSharelink] = useState("hidden");
 
   //EVENTO COLLAPSABLE SHARE LINK
-  const handleCollapsableShareLink = () => {
+  const handleCollapsableShareLink = (ev) => {
     deployCollapsableSharelink("");
+    Api(data);
+    console.log(data);
+    ev.preventDefault();
   };
 
   //EVENTO COLLAPSABLE
@@ -146,6 +159,7 @@ function App() {
             collapsableShare={collapsableShare}
             collapsableShareLink={collapsableShareLink}
             handleCollapsableShareLink={handleCollapsableShareLink}
+
           />
         </main>
 

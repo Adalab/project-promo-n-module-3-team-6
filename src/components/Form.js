@@ -228,8 +228,7 @@ const Form = (props) => {
                 className="share__section--done__link js_url"
                 href=" "
                 target="_blank"
-              >
-                https://awesome-profile-card.com?id=A456DF0001
+              >{props.URLdata}
               </a>
 
               <button className="share__section--done__button js_undone2">
