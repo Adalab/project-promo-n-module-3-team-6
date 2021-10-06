@@ -2,6 +2,8 @@
 import "../stylesheets/Form.scss";
 
 const Form = (props) => {
+
+
   return (
     <div>
       <form className="form" action="">
@@ -218,6 +220,7 @@ const Form = (props) => {
             >
               <i className="far fa-address-card"></i> Crear tarjeta
             </button>
+            <p className="legal">Al pulsar Crear tarjeta autorizo a Adalab a compartir mis datos personales y usarlos para fines promocionales</p>
             <div
               className={`share__section--done  ${props.collapsableShareLink}`}
             >
