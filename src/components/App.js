@@ -85,14 +85,14 @@ function App() {
     setData({ ...data });
   }
 
-  const getPhotoUrl =
-    function getPhotoUrl(data, placeholder) {
-      if (placeholder) {
-        return data.photo === '' ? Image : data.photo;
-      } else {
-        return data.photo;
-      }
-    };
+  //AQUI HAY UN ERROR QUE NO CONSIGO RESOLVER
+  function getPhotoUrl(data, placeholder) {
+    if (placeholder) {
+      return data.photo === '' ? Image : data.photo;
+    } else {
+      return data.photo;
+    }
+  };
 
   //EVENTO COLLAPSABLE SHARE LINK
   const handleCollapsableShareLink = (ev) => {
