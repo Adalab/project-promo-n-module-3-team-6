@@ -1,278 +1,220 @@
-import React, { useState } from "react";
-import logoAdalab from "../images/logo-adalab.png";
+//IMPORTAT ESTILOS
+import "../stylesheets/App.scss";
+
+//IMPORTAR HOOKS
+import React, { useEffect, useState } from "react";
+
+//IMPORTAR API
+import Api from '../services/Api';
+
+//IMPORTAR IMÁGENES
 //import tarjetasMolonasPng from '../images/tarjetas-molonas.png';
-import tarjetasMolonasSvg from "../images/tarjetas-molonas.svg";
 //import tarjetas-molonas - 2x from '../images/tarjetas-molonas@2x.png';
 //import tarjetas-molonas - 3x from '../images/tarjetas-molonas@3x.png';
 //import photo-image from '../images/photo__imag.jpg';
-import "../stylesheets/App.scss";
 
+//IMPORTAR COMPONENTES
+import Header from "./Header";
+import Preview from "./Preview";
+import Form from "./Form";
+import Footer from "./Footer";
+
+
+//FUNCION PRINCIPAL
 function App() {
+  // VARIABLE DE ESTADO DE PALETAS
   const [palette, setPalete] = useState("");
-  const handleChangeColor = (event) => {
-    setPalete(event.target.value);
+
+  // VARIABLE DE ESTADO DE PREVIEW
+  const [data, setData] = useState({
+    palette: 1,
+    name: "",
+    job: "",
+    email: "",
+    phone: "",
+    linkedin: "",
+    github: "",
+  });
+
+  // let [URLdata, setURLData] = useState('');
+
+
+  // VARIABLE DE ESTADO DE COLLAPSABLES
+  const [collapsableDesign, deployCollapsableDesign] = useState("");
+  const [arrowDesign, rotateArrowDesign] = useState("");
+  const [collapsableFill, deployCollapsableFill] = useState("hidden");
+  const [arrowFill, rotateArrowFill] = useState("");
+  const [collapsableShare, deployCollapsableShare] = useState("hidden");
+  const [arrowShare, rotateArrowShare] = useState("");
+  const [collapsableShareLink, deployCollapsableSharelink] = useState("hidden");
+
+  //VARIABLE DE ESTADO DE IMAGEN
+  // const [selectedImage, setSelectedImage] = useState(null);
+
+  //EVENTO CARGA IMAGEN
+  // * Añadir imagen
+  //función para previsualizar imagen usuaria:
+  const fr = new FileReader();
+  /**
+   * Recoge el archivo añadido al campo de tipo "file"
+   * y lo carga en nuestro objeto FileReader para que
+   * lo convierta a algo con lo que podamos trabajar.
+   * Añade un listener al FR para que ejecute una función
+   * al tener los datos listos
+   * @param {evento} e
+   */
+  function getImage(e) {
+    const myFile = e.currentTarget.files[0];
+    fr.addEventListener('load', writeImage);
+    fr.readAsDataURL(myFile);
+  }
+
+  /**
+   * Una vez tenemos los datos listos en el FR podemos
+   * trabajar con ellos ;)
+   */
+  function writeImage() {
+    /* En la propiedad `result` de nuestro FR se almacena
+     * el resultado. Ese resultado de procesar el fichero que hemos cargado
+     * podemos pasarlo como background a la imagen de perfil y a la vista previa
+     * de nuestro componente.
+     */
+
+    //
+    data.photo = fr.result;
+    setData({ ...data });
+  }
+
+  const getPhotoUrl =
+    function getPhotoUrl(data, placeholder) {
+      if (placeholder) {
+        return data.photo === '' ? Image : data.photo;
+      } else {
+        return data.photo;
+      }
+    };
+
+  //EVENTO COLLAPSABLE SHARE LINK
+  const handleCollapsableShareLink = (ev) => {
+    deployCollapsableSharelink("");
+    Api(data);
+    console.log(data);
+    ev.preventDefault();
   };
 
-  const [fullName, setFullName] = useState("");
-  const handleFullName = (event) => {
-    setFullName(event.target.value);
+  //EVENTO COLLAPSABLE
+  const handleCollapsable = (ev) => {
+    const clickSection = ev.currentTarget.id;
+    console.log(clickSection);
+    if (clickSection === "design") {
+      deployCollapsableDesign("");
+      rotateArrowDesign("");
+      deployCollapsableFill("hidden");
+      rotateArrowFill("form__arrow--rotate");
+      deployCollapsableShare("hidden");
+      rotateArrowShare("form__arrow--rotate");
+    } else if (clickSection === "fill") {
+      deployCollapsableFill("");
+      rotateArrowFill("");
+      deployCollapsableShare("hidden");
+      rotateArrowShare("form__arrow--rotate");
+      deployCollapsableDesign("hidden");
+      rotateArrowDesign("form__arrow--rotate");
+    } else if (clickSection === "share") {
+      deployCollapsableShare("");
+      rotateArrowShare("");
+      deployCollapsableDesign("hidden");
+      rotateArrowDesign("form__arrow--rotate");
+      deployCollapsableFill("hidden");
+      rotateArrowFill("form__arrow--rotate");
+    }
   };
 
+  // FUNCION MANEJADORA DE PINTAR PREVIEW EN BASE A LAS PALETAS SELECCIONADAS
+  const handleChangeColor = (ev) => {
+    setPalete(ev.target.value);
+  };
+
+  // FUNCION MANEJADORA DE REYENAR PREVIEW EN BASE A LOS INPUTS RELLENADOS
+  const handleInput = (ev) => {
+    const whichInput = ev.currentTarget.id;
+
+    switch (whichInput) {
+      case "fullName":
+        setData({
+          ...data, // Spread operator
+          name: ev.currentTarget.value,
+        });
+        break;
+      case "job":
+        setData({
+          ...data, // Spread operator
+          job: ev.currentTarget.value,
+        });
+        break;
+      case "telFill":
+        setData({
+          ...data, // Spread operator
+          phone: ev.currentTarget.value,
+        });
+        break;
+      case "emailFill":
+        setData({
+          ...data, // Spread operator
+          email: ev.currentTarget.value,
+        });
+        break;
+      case "linkedinFill":
+        setData({
+          ...data, // Spread operator
+          linkedin: ev.currentTarget.value,
+        });
+        break;
+      case "githubFill":
+        setData({
+          ...data, // Spread operator
+          github: ev.currentTarget.value,
+        });
+        break;
+      default:
+        console.error("opcionNoValida");
+    }
+  };
+
+  //HTML Y PARTE RENDERIZADA
   return (
     <div className="App">
       <div className="page">
-        <header className="form__header">
-          <a href="./index.html" alt="home" title="Home">
-            <img
-              className="form__header--image"
-              src={tarjetasMolonasSvg}
-              alt="Awesome cards"
-            />
-          </a>
-        </header>
+        <Header />
 
+        {/* MAIN*/}
         <main className="card">
-          <section className="photo__container">
-            <div className="photo__reset--container">
-              <ul className="photo__reset--menu">
-                <li className="photo__reset--text">
-                  <i className="far fa-trash-alt"></i>
-                </li>
-                <li className="photo__reset--text">Reset</li>
-              </ul>
-            </div>
-            <div
-              className={`photo__card--container js-photo palette-${palette}`}
-            >
-              <div className="photo__card--rectangle"></div>
-              <p className="photo__card--name">{fullName}</p>
-              <p className="photo__card--frontend">Front-end developer</p>
-              <div className="photo__card--photo" id="photo"></div>
-              <div className="photo__card--rrss">
-                <a href="" id="telLink" target="_blank">
-                  <i className="fas fa-mobile-alt photo__card--rrss-icon"></i>
-                </a>
-                <a href="" id="emailLink" target="_blank">
-                  <i className="far fa-envelope photo__card--rrss-icon"></i>
-                </a>
-                <a href="" id="linkedinLink" target="_blank">
-                  <i className="fab fa-linkedin-in photo__card--rrss-icon"></i>
-                </a>
-                <a href="" id="githubLink" target="_blank">
-                  <i className="fab fa-github-alt photo__card--rrss-icon"></i>
-                </a>
-              </div>
-            </div>
-          </section>
-          <form className="form" action="">
-            <legend className="design__legend">
-              <div className="form__parameters">
-                <h2 className="form__title">
-                  <i className="far fa-object-ungroup form__icon"></i>Diseña
-                </h2>
-                <i className="fas fa-chevron-down design__arrow form__arrow js__collapsable"></i>
-              </div>
+          {/* PREVIEW*/}
+          <Preview dataPreview={data} paletePreview={palette} />
 
-              <fieldset className="hidden design__check js__fieldset">
-                <label className="design__check--colors" htmlFor="color">
-                  colores
-                </label>
+          {/* FORM*/}
+          <Form
+            handleCollapsable={handleCollapsable}
+            arrowDesign={arrowDesign}
+            collapsableDesign={collapsableDesign}
+            handleChangeColor={handleChangeColor}
+            arrowFill={arrowFill}
+            collapsableFill={collapsableFill}
+            handleInput={handleInput}
+            arrowShare={arrowShare}
+            collapsableShare={collapsableShare}
+            collapsableShareLink={collapsableShareLink}
+            handleCollapsableShareLink={handleCollapsableShareLink}
+            getImage={getImage}
+            data={data}
+            getPhotoUrl={getPhotoUrl}
 
-                <section className="design__check--section">
-                  <input
-                    onChange={handleChangeColor}
-                    className="palette"
-                    type="radio"
-                    id="palette"
-                    name="color"
-                    value="1"
-                  />
-
-                  <section className="design__check--section__box">
-                    <div className="box box__1"></div>
-                    <div className="box box__2"></div>
-                    <div className="box box__3"></div>
-                  </section>
-                </section>
-
-                <section className="design__check--section">
-                  <input
-                    onChange={handleChangeColor}
-                    className="palette"
-                    type="radio"
-                    id="palette"
-                    name="color"
-                    value="2"
-                  />
-
-                  <section className="design__check--section__box">
-                    <div className="box box__4"></div>
-                    <div className="box box__5"></div>
-                    <div className="box box__6"></div>
-                  </section>
-                </section>
-                <section className="design__check--section">
-                  <input
-                    onChange={handleChangeColor}
-                    className="palette"
-                    type="radio"
-                    id="palette"
-                    name="color"
-                    value="3"
-                  />
-
-                  <section className="design__check--section__box">
-                    <div className="box box__7"></div>
-                    <div className="box box__8"></div>
-                    <div className="box box__9"></div>
-                  </section>
-                </section>
-
-                <hr />
-              </fieldset>
-              <hr className="form__line" />
-            </legend>
-
-            <legend className="fill">
-              <div className="form__parameters">
-                <h2 className="form__title">
-                  <i className="far fa-keyboard form__icon"></i>Rellena
-                </h2>
-                <i className="fas fa-chevron-down fill__arrow form__arrow js__collapsable"></i>
-              </div>
-
-              <fieldset className="hidden fill__form js__fieldset">
-                <label className="fill__form--label" htmlFor="name">
-                  {" "}
-                  Nombre Completo
-                </label>
-                <input
-                  className="fill__form--input name" onChange={handleChangeColor}
-                  id="fullname"
-                  type="text"
-                  placeholder=" Ej: Sally Jill"
-                  required
-                  onKeyUp={handleFullName}
-                />
-
-                <label className="fill__form--label" htmlFor="job">
-                  {" "}
-                  Puesto
-                </label>
-                <input
-                  className="fill__form--input job"
-                  id="job"
-                  type="text"
-                  placeholder=" Ej: Front-end unicorn"
-                  required
-                />
-
-                <label
-                  className="fill__form--label"
-                  htmlFor="photo photo__square"
-                >
-                  Imagen de perfil
-                </label>
-
-                <label
-                  htmlFor="imgselector"
-                  className="fill__form--input photo"
-                >
-                  Añadir imagen
-                  <input
-                    type="file"
-                    id="imgselector"
-                    name="imgselector"
-                    className="hide--input js__input fill__form--input photo"
-                  />
-                </label>
-
-                <div className="fill__form--input photo__square"></div>
-
-                <label className="fill__form--label" htmlFor="email">
-                  {" "}
-                  Email
-                </label>
-                <input
-                  className="fill__form--input email"
-                  id="emailFill"
-                  type="email"
-                  placeholder=" Ej: sally-hill@gmail.com"
-                  required
-                />
-
-                <label className="fill__form--label" htmlFor="tel">
-                  {" "}
-                  Teléfono
-                </label>
-                <input
-                  className="fill__form--input tel"
-                  id="telFill"
-                  type="tel"
-                  placeholder=" Ej: 555-55-55-55"
-                />
-
-                <label className="fill__form--label" htmlFor="linkedin">
-                  {" "}
-                  Linkedin
-                </label>
-                <input
-                  className="fill__form--input linkedin"
-                  id="linkedinFill"
-                  type="text"
-                  placeholder=" Ej: linkedin.com/in/sally.hill"
-                />
-
-                <label className="fill__form--label" htmlFor="github">
-                  {" "}
-                  Github
-                </label>
-                <input
-                  className="fill__form--input github"
-                  id="githubFill"
-                  type="text"
-                  placeholder=" Ej: @sally-hill"
-                />
-              </fieldset>
-              <hr className="form__line" />
-            </legend>
-
-            <legend className="share">
-              <div className="form__parameters">
-                <h2 className="form__title">
-                  <i className="fas fa-share-alt form__icon"></i>Comparte
-                </h2>
-                <i className="fas fa-chevron-down share__arrow form__arrow js__collapsable"></i>
-              </div>
-
-              <fieldset className="hidden dropdown js__fieldset">
-                <button className="dropdown__button--create">
-                  <i className="far fa-address-card"></i> Crear tarjeta
-                </button>
-
-                {/*  Aquí iría html de cuando se crea la tarjeta
-                <p className='dropdown__message'>La tarjeta ha sido creada</p>
-                <button className='dropdown__button--tw'>
-                  <i className='fab fa-twitter'></i>Compartir en twitter
-                </button>
-              </div>  */}
-              </fieldset>
-              <hr className="form__line" />
-            </legend>
-          </form>
+          />
         </main>
 
-        <footer className="footer">
-          <h6 className="footer__copyright">
-            ochoPinocho for awesome profile-cards @2021
-          </h6>
-          <img
-            className="footer__image"
-            src={logoAdalab}
-            alt="logo Adalab"
-            title="Logo de Adalab"
-          />
-        </footer>
+        {/* FOOTER*/}
+        <Footer />
+
       </div>
     </div>
   );
