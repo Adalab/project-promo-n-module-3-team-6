@@ -4,6 +4,9 @@ import "../stylesheets/App.scss";
 //IMPORTAR HOOKS
 import React, { useEffect, useState } from "react";
 
+//importar rutas
+import { Link, Route } from 'react-router-dom';
+
 //IMPORTAR API
 import Api from '../services/Api';
 
