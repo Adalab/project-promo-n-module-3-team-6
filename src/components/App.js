@@ -8,7 +8,8 @@ import React, { useEffect, useState } from "react";
 import Api from '../services/Api';
 
 //IMPORTAR IMÁGENES
-//import tarjetasMolonasPng from '../images/tarjetas-molonas.png';
+import image from '../images/photo.jpg';
+
 //import tarjetas-molonas - 2x from '../images/tarjetas-molonas@2x.png';
 //import tarjetas-molonas - 3x from '../images/tarjetas-molonas@3x.png';
 //import photo-image from '../images/photo__imag.jpg';
@@ -23,7 +24,9 @@ import Footer from "./Footer";
 //FUNCION PRINCIPAL
 function App() {
   // VARIABLE DE ESTADO DE PALETAS
-  const [palette, setPalete] = useState("");
+  const [palette, setPalette] = useState("");
+
+  //VARIABLE DE ESTADO DE ELEMENTOS DEL FORM
 
   // VARIABLE DE ESTADO DE PREVIEW
   const [data, setData] = useState({
@@ -34,10 +37,8 @@ function App() {
     phone: "",
     linkedin: "",
     github: "",
+    image: { image }
   });
-
-  let [URLdata, setURLData] = useState('');
-
 
   // VARIABLE DE ESTADO DE COLLAPSABLES
   const [collapsableDesign, deployCollapsableDesign] = useState("");
@@ -86,7 +87,7 @@ function App() {
 
   // FUNCION MANEJADORA DE PINTAR PREVIEW EN BASE A LAS PALETAS SELECCIONADAS
   const handleChangeColor = (ev) => {
-    setPalete(ev.target.value);
+    setPalette(ev.target.value);
   };
 
   // FUNCION MANEJADORA DE REYENAR PREVIEW EN BASE A LOS INPUTS RELLENADOS
@@ -135,6 +136,26 @@ function App() {
     }
   };
 
+
+  const clearState = () => {
+    setData({
+      palette: 1,
+      name: '',
+      job: '',
+      phone: '',
+      email: '',
+      linkedin: '',
+      github: '',
+      image: { image },
+    });
+  }
+
+  //FUNCION MANEJADORA RESET
+  const handleReset = () => {
+    clearState();
+    setPalette(1);
+  }
+
   //HTML Y PARTE RENDERIZADA
   return (
     <div className="App">
@@ -144,7 +165,11 @@ function App() {
         {/* MAIN*/}
         <main className="card">
           {/* PREVIEW*/}
-          <Preview dataPreview={data} paletePreview={palette} />
+          <Preview
+            dataPreview={data}
+            paletePreview={palette}
+            handleReset={handleReset}
+            image={image} />
 
           {/* FORM*/}
           <Form
@@ -159,7 +184,7 @@ function App() {
             collapsableShare={collapsableShare}
             collapsableShareLink={collapsableShareLink}
             handleCollapsableShareLink={handleCollapsableShareLink}
-
+            data={data}
           />
         </main>
 

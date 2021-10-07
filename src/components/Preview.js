@@ -7,7 +7,11 @@ const Preview = (props) => {
         <div >
             <section className="photo__container">
 
-                <div className="photo__reset--container">
+                <div className="photo__reset--container"
+                    onClick={props.handleReset}>
+                    {/* <i className="far fa-trash-alt"></i>
+                     <p className='photo__reset--text'>Reset</p> */}
+
                     <ul className="photo__reset--menu">
                         <li className="photo__reset--text">
                             <i className="far fa-trash-alt"></i>
@@ -23,7 +27,12 @@ const Preview = (props) => {
 
                     <p className="photo__card--name">{props.dataPreview.name === "" ? "Nombre Completo" : props.dataPreview.name}</p>
                     <p className="photo__card--frontend">{props.dataPreview.job === "" ? "Front-end developer" : props.dataPreview.job}</p>
-                    <div className="photo__card--photo" id="photo"></div>
+                    <img
+                        className='photo__card--photo' id='photo'
+                        src={props.image}
+                        alt='user'
+                        title='user'
+                    />
                     <div className="photo__card--rrss">
                         <a href={props.dataPreview.phone === "" ? "" : `tel:${props.dataPreview.phone}`} id="telLink" target="_blank" rel="noreferrer">
                             <i className="fas fa-mobile-alt photo__card--rrss-icon"></i>

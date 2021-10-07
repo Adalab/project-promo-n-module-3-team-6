@@ -34,7 +34,7 @@ const Form = (props) => {
                 onChange={props.handleChangeColor}
                 className="palette"
                 type="radio"
-                id="palette"
+                id="palette1"
                 name="color"
                 value="1"
               />
@@ -51,7 +51,7 @@ const Form = (props) => {
                 onChange={props.handleChangeColor}
                 className="palette"
                 type="radio"
-                id="palette"
+                id="palette2"
                 name="color"
                 value="2"
               />
@@ -67,7 +67,7 @@ const Form = (props) => {
                 onChange={props.handleChangeColor}
                 className="palette"
                 type="radio"
-                id="palette"
+                id="palette3"
                 name="color"
                 value="3"
               />
@@ -112,6 +112,7 @@ const Form = (props) => {
               type="text"
               placeholder=" Ej: Sally Jill"
               onChange={props.handleInput}
+              value={props.data.name}
               required
             />
 
@@ -125,6 +126,7 @@ const Form = (props) => {
               type="text"
               placeholder=" Ej: Front-end unicorn"
               onChange={props.handleInput}
+              value={props.data.job}
               required
             />
 
@@ -142,7 +144,9 @@ const Form = (props) => {
               />
             </label>
 
-            <div className="fill__form--input photo__square"></div>
+            <div className="fill__form--input photo__square">
+
+            </div>
 
             <label className="fill__form--label" htmlFor="email">
               {" "}
@@ -154,6 +158,7 @@ const Form = (props) => {
               type="email"
               placeholder=" Ej: sally-hill@gmail.com"
               onChange={props.handleInput}
+              value={props.data.email}
               required
             />
 
@@ -167,6 +172,7 @@ const Form = (props) => {
               type="tel"
               placeholder=" Ej: 555-55-55-55"
               onChange={props.handleInput}
+              value={props.data.phone}
             />
 
             <label className="fill__form--label" htmlFor="linkedin">
@@ -179,6 +185,7 @@ const Form = (props) => {
               type="text"
               placeholder=" Ej: sally.hill"
               onChange={props.handleInput}
+              value={props.data.linkedin}
             />
 
             <label className="fill__form--label" htmlFor="github">
@@ -191,6 +198,7 @@ const Form = (props) => {
               type="text"
               placeholder=" Ej: sally-hill"
               onChange={props.handleInput}
+              value={props.data.github}
             />
           </fieldset>
           <hr className="form__line" />
