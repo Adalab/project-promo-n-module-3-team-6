@@ -1,12 +1,13 @@
 // IMPORTAR ESTILOS
 import "../stylesheets/Form.scss";
+import Share from "./share";
 
 const Form = (props) => {
 
 
   return (
     <div>
-      <form className="form" action="">
+      <form className="form" action="" onSubmit={ev=>ev.preventDefault()}>
         {/* FORMULARIO - DISEÑO*/}
         <legend className="design__legend">
           <div
@@ -224,7 +225,7 @@ const Form = (props) => {
           >
             <button
               className="dropdown__button--create"
-              onClick={props.handleCollapsableShareLink}
+              onClick={props.handleShareCard}
             >
               <i className="far fa-address-card"></i> Crear tarjeta
             </button>
@@ -256,6 +257,7 @@ const Form = (props) => {
           </fieldset>
           <hr className="form__line" />
         </legend>
+        <Share data={props.data} />
       </form>
     </div>
   );

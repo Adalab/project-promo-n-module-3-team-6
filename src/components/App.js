@@ -2,26 +2,23 @@
 import "../stylesheets/App.scss";
 
 //IMPORTAR HOOKS
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 
 //importar rutas
 import { Link, Route } from 'react-router-dom';
 
-//IMPORTAR API
-import Api from '../services/Api';
 
 //IMPORTAR IMÁGENES
 import image from '../images/photo.jpg';
 
-//import tarjetas-molonas - 2x from '../images/tarjetas-molonas@2x.png';
-//import tarjetas-molonas - 3x from '../images/tarjetas-molonas@3x.png';
-//import photo-image from '../images/photo__imag.jpg';
+
 
 //IMPORTAR COMPONENTES
 import Header from "./Header";
 import Preview from "./Preview";
 import Form from "./Form";
 import Footer from "./Footer";
+
 
 
 //FUNCION PRINCIPAL
@@ -40,7 +37,7 @@ function App() {
     phone: "",
     linkedin: "",
     github: "",
-    image: { image }
+    photo: "sdlkñfjaslñdfjaslñdfj"
   });
 
   // VARIABLE DE ESTADO DE COLLAPSABLES
@@ -51,11 +48,14 @@ function App() {
   const [collapsableShare, deployCollapsableShare] = useState("hidden");
   const [arrowShare, rotateArrowShare] = useState("");
   const [collapsableShareLink, deployCollapsableSharelink] = useState("hidden");
+// ESTADO URL
+
+
+// evento onclick crear tarjeta
 
   //EVENTO COLLAPSABLE SHARE LINK
   const handleCollapsableShareLink = (ev) => {
     deployCollapsableSharelink("");
-    Api(data);
     console.log(data);
     ev.preventDefault();
   };
@@ -149,7 +149,7 @@ function App() {
       email: '',
       linkedin: '',
       github: '',
-      image: { image },
+      photo: { image },
     });
   }
 
@@ -176,6 +176,7 @@ function App() {
 
           {/* FORM*/}
           <Form
+            data={data}
             handleCollapsable={handleCollapsable}
             arrowDesign={arrowDesign}
             collapsableDesign={collapsableDesign}
@@ -187,7 +188,7 @@ function App() {
             collapsableShare={collapsableShare}
             collapsableShareLink={collapsableShareLink}
             handleCollapsableShareLink={handleCollapsableShareLink}
-            data={data}
+            
           />
         </main>
 
