@@ -1,18 +1,16 @@
-import React, { useEffect } from "react";
-const handleShareBtn = (setData) => {
-  return fetch(
-    "https://awesome-profile-cards.herokuapp.com/card" /*, {
+
+const SearchCard = json => 
+   fetch(
+    "https://awesome-profile-cards.herokuapp.com/card" , {
     method: "POST",
-    body: JSON.stringify(data),
+    body: JSON.stringify(json),
     headers: {
       "Content-Type": "application/json",
     },
-  }**/
+  }
   )
-    .then((response) => response.json())
-    .then((response) => {
-      setData(response);
-    });
-};
+    .then((response) => response.json());
+  
 
-export default handleShareBtn;
+
+export default SearchCard

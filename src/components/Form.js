@@ -5,7 +5,7 @@ import Share from "./share";
 const Form = (props) => {
   return (
     <div>
-      <form className="form" action="">
+      <form className="form" action="" onSubmit={ev=>ev.preventDefault()}>
         {/* FORMULARIO - DISEÑO*/}
         <legend className="design__legend">
           <div
