@@ -2,16 +2,13 @@
 import "../stylesheets/App.scss";
 
 //IMPORTAR HOOKS
-import React, {  useState } from "react";
+import React, { useState } from "react";
 
 //importar rutas
 import { Link, Route } from 'react-router-dom';
 
-
 //IMPORTAR IMÁGENES
-import image from '../images/photo.jpg';
-
-
+import defaultImage from '../images/photo.jpg';
 
 //IMPORTAR COMPONENTES
 import Header from "./Header";
@@ -20,13 +17,15 @@ import Form from "./Form";
 import Footer from "./Footer";
 
 
-
 //FUNCION PRINCIPAL
 function App() {
   // VARIABLE DE ESTADO DE PALETAS
   const [palette, setPalette] = useState("");
 
   //VARIABLE DE ESTADO DE ELEMENTOS DEL FORM
+
+  //VARIABLE DE ESTADO DE FOTO
+  const [image, setImage] = useState(defaultImage);
 
   // VARIABLE DE ESTADO DE PREVIEW
   const [data, setData] = useState({
@@ -37,7 +36,7 @@ function App() {
     phone: "",
     linkedin: "",
     github: "",
-    photo: "sdlkñfjaslñdfjaslñdfj"
+    photo: { defaultImage }
   });
 
   // VARIABLE DE ESTADO DE COLLAPSABLES
@@ -48,10 +47,16 @@ function App() {
   const [collapsableShare, deployCollapsableShare] = useState("hidden");
   const [arrowShare, rotateArrowShare] = useState("");
   const [collapsableShareLink, deployCollapsableSharelink] = useState("hidden");
-// ESTADO URL
 
+  // ESTADO URL
 
-// evento onclick crear tarjeta
+  // EVENTO CREAR TARJETA
+
+  //EVENTO CARGAR IMAGEN
+  const handleImage = (userImage) => {
+    setData({ ...data, photo: userImage });
+    setImage(userImage);
+  };
 
   //EVENTO COLLAPSABLE SHARE LINK
   const handleCollapsableShareLink = (ev) => {
@@ -139,7 +144,7 @@ function App() {
     }
   };
 
-
+  //RESET
   const clearState = () => {
     setData({
       palette: 1,
@@ -149,14 +154,15 @@ function App() {
       email: '',
       linkedin: '',
       github: '',
-      photo: { image },
+      photo: { defaultImage },
     });
   }
 
   //FUNCION MANEJADORA RESET
   const handleReset = () => {
     clearState();
-    setPalette(1);
+    setImage(defaultImage);
+
   }
 
   //HTML Y PARTE RENDERIZADA
@@ -183,12 +189,13 @@ function App() {
             handleChangeColor={handleChangeColor}
             arrowFill={arrowFill}
             collapsableFill={collapsableFill}
+            handleImage={handleImage} image={image}
             handleInput={handleInput}
             arrowShare={arrowShare}
             collapsableShare={collapsableShare}
             collapsableShareLink={collapsableShareLink}
             handleCollapsableShareLink={handleCollapsableShareLink}
-            
+
           />
         </main>
 

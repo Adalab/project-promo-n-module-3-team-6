@@ -22,7 +22,8 @@ const Preview = (props) => {
                 <div
                     className={`photo__card--container js-photo palette-${props.paletePreview}`}
                 >
-                    <div className="photo__card--rectangle"></div>
+                    <div className="photo__card--rectangle"
+                        style={{ backgroundImage: `url(${props.image})` }}></div>
 
 
                     <p className="photo__card--name">{props.dataPreview.name === "" ? "Nombre Completo" : props.dataPreview.name}</p>

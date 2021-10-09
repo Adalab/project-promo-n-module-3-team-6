@@ -1,13 +1,14 @@
 // IMPORTAR ESTILOS
 import "../stylesheets/Form.scss";
 import Share from "./share";
+import Image from "./Image";
 
 const Form = (props) => {
 
 
   return (
     <div>
-      <form className="form" action="" onSubmit={ev=>ev.preventDefault()}>
+      <form className="form" action="" onSubmit={ev => ev.preventDefault()}>
         {/* FORMULARIO - DISEÑO*/}
         <legend className="design__legend">
           <div
@@ -32,6 +33,7 @@ const Form = (props) => {
 
             <section className="design__check--section">
               <input
+                defaultChecked={true}
                 onChange={props.handleChangeColor}
                 className="palette"
                 type="radio"
@@ -131,24 +133,7 @@ const Form = (props) => {
               required
             />
 
-            <label className="fill__form--label" htmlFor="photo photo__square">
-              Imagen de perfil
-            </label>
-
-            <label htmlFor="imgselector" className="fill__form--input photo">
-              Añadir imagen
-              <input
-                type="file"
-                id="imgselector"
-                name="imgselector"
-                className="hide--input js__input fill__form--input photo"
-              />
-            </label>
-
-            <div className="fill__form--input photo__square">
-
-            </div>
-
+            <Image handleImage={props.handleImage} image={props.image} />
             <label className="fill__form--label" htmlFor="email">
               {" "}
               Email
@@ -206,7 +191,7 @@ const Form = (props) => {
         </legend>
 
         {/* FORMULARIO - COMPARTE*/}
-        
+
         <Share data={props.data} />
       </form>
     </div>
