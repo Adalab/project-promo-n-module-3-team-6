@@ -25,7 +25,7 @@ const Share = (props) => {
         console.log("Respuesta", dataResponse);
         if (dataResponse.success) {
           // Servidor responde que es bueno y nos da la url
-          setUrl(url=== dataResponse);
+          setUrl(url=== props.data.cardUrl);
 
           setSuccess("WELL");
         } else {
@@ -107,10 +107,10 @@ const Share = (props) => {
                 </h2>
                 <a
                   className="share__section--done__link js_url"
-                  href={`${url}`} 
+                  href={`${success}`} 
                   target="_blank" rel="noreferrer"
                 >
-                  https://awesome-profile-card.com?id=A456DF0001
+                  pincha aqui
                 </a>
 
                 <button className="share__section--done__button js_undone2">
