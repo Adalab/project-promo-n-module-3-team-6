@@ -159,6 +159,7 @@ const Form = (props) => {
               placeholder=" Ej: 555-55-55-55"
               onChange={props.handleInput}
               value={props.data.phone}
+              required
             />
 
             <label className="fill__form--label" htmlFor="linkedin">
@@ -172,6 +173,7 @@ const Form = (props) => {
               placeholder=" Ej: sally.hill"
               onChange={props.handleInput}
               value={props.data.linkedin}
+              required
             />
 
             <label className="fill__form--label" htmlFor="github">
@@ -185,6 +187,7 @@ const Form = (props) => {
               placeholder=" Ej: sally-hill"
               onChange={props.handleInput}
               value={props.data.github}
+              required
             />
           </fieldset>
           <hr className="form__line" />
