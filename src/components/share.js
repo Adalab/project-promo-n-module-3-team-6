@@ -5,7 +5,7 @@ const Share = (props) => {
   const [clicked, setClicked] = useState("NO");
   const [success, setSuccess] = useState("ERROR");
   const [error, setError] = useState('');
-  const [url, setUrl]= useState('https://awesome-profile-cards.herokuapp.com/card')
+  
 
   const handleShareCard = (json) => {
     fetch("https://awesome-profile-cards.herokuapp.com/card", {
@@ -23,49 +23,48 @@ const Share = (props) => {
         setClicked("YES");
 
         console.log("Respuesta", dataResponse);
-        if (dataResponse.success) {
+        
+        if (dataResponse.success === true) {
           // Servidor responde que es bueno y nos da la url
-          setUrl(url=== props.data.cardUrl);
-
-          setSuccess("WELL");
+          
+          setError('');
+          setSuccess(dataResponse.cardURL);
         } else {
-          setSuccess("ERROR");
-          setError(dataResponse.error);
+          
+          setSuccess(null);
+          const fields = [];
+
+          if (props.data.phone === '') {
+            fields.push('Ups❕ 😓, debes rellenar completo tu móvil')
+          } 
+          if (props.data.name === '') {
+            fields.push('Ups❕ 😓, debes rellenar tu nombre')
+          } 
+          if (props.data.job === '') {
+            fields.push('Ups❕ 😓, debes rellenar tu profesión')
+          } 
+          if (props.data.photo === '') {
+            fields.push('Ups❕ 😓, debes rellenar tu foto')
+          } 
+          if (props.data.email === '') {
+            fields.push('Ups❕ 😓, debes rellenar tu email')
+          }
+
+          if (props.data.linkedin === '') {
+            fields.push('Ups❕ 😓, debes rellenar tu linkedin')
+          }
+
+          if (props.data.github === '') {
+            fields.push('Ups❕ 😓, debes rellenar tu github')
+          }
+          
+          if (fields.length === 1) {
+            setError(fields[0]);
+          } else {
+            setError('Ups❕ 😓, revisa todos los campos');
+          }
+          
         }
-
-        /* if (data.success) {
-        undoneTwitter.classList.remove('hidden');
-        cardDoneCollapsable.classList.remove('hidden');
-        const textCard = 'Mira mi tarjeta profesional 👩🏻‍💻 y contáctame para colaborar 🤳🏻 &hashtags=Adalabers,JavaScript,PromoNerea,teamUndefined';
-        twitterLink.href = `https://twitter.com/intent/tweet?text=${textCard}&url=${data.cardURL}`;
-
-      } else {
-        cardDoneCollapsable.classList.remove('hidden');
-        undoneShare.classList.add('hidden');
-        undoneTwitter.classList.add('hidden');
-
-        if (props.formObject.name === '') {
-          urlShare.innerHTML = 'Ups❕ 😓, debes rellenar tu nombre';
-        } else if (props.formObject.job === '') {
-          urlShare.innerHTML = 'Ups❕ 😓, debes rellenar tu profesión';
-        } else if (props.formObject.photo === '') {
-          urlShare.innerHTML = 'Ups❕ 😓, debes rellenar tu foto';
-        } else if (props.formObject.email === '') {
-          urlShare.innerHTML = 'Ups❕ 😓, debes rellenar tu email';
-        } else if (!validateEmail(props.formObject.email)) {
-          urlShare.innerHTML = 'Ups❕ 😓, debes rellenar correctamente tu email, falta un @ o algo más 😉';
-        } else if (props.formObject.phone === '') {
-          urlShare.innerHTML = 'Ups❕ 😓, debes rellenar tu móvil';
-        } else if (!validatePhone(props.formObject.phone)) {
-          urlShare.innerHTML = 'Ups❕ 😓, debes rellenar completo tu móvil, falta algo 😉';
-        } else if (props.formObject.linkedin === '') {
-          urlShare.innerHTML = 'Ups❕ 😓, debes rellenar tu linkedin';
-        } else if (props.formObject.github === '') {
-          urlShare.innerHTML = 'Ups❕ 😓, debes rellenar tu github';
-        } else if (props.formObject.palette === '') {
-          urlShare.innerHTML = 'Ups❕ 😓, debes escojer una paleta de colores 🌈';
-        }
-      };*/
       });
   };
 
@@ -99,7 +98,7 @@ const Share = (props) => {
               clicked === "NO" ? "hidden" : ""
             }`}
           >
-            {success === "WELL" ? (
+            {success !== null ? (
               /* HTML DE QUE HA IDO BIEN */
               <>
                 <h2 className="share__section--done__text js_undone">
@@ -107,17 +106,18 @@ const Share = (props) => {
                 </h2>
                 <a
                   className="share__section--done__link js_url"
-                  href={`${success}`} 
+                  href={success} 
                   target="_blank" rel="noreferrer"
                 >
-                  pincha aqui
+                  {success}
                 </a>
 
                 <button className="share__section--done__button js_undone2">
                   <a
                     className="share__section--done__button--link js_twitter_link"
-                    href=" "
-                    target="_blank"
+                    href={`https://twitter.com/intent/tweet?url=${success} `}
+                    target="_blank"  rel='noreferrer'
+
                   >
                     <i className="icon3 fab fa-twitter"></i> &nbsp; Compartir en
                     twitter
