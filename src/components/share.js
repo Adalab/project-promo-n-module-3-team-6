@@ -7,7 +7,8 @@ const Share = (props) => {
   const [error, setError] = useState('');
   
 
-  const handleShareCard = (json) => {
+  const handleShareCard = () => {
+
     fetch("https://awesome-profile-cards.herokuapp.com/card", {
       method: "POST",
       body: JSON.stringify(props.data),
@@ -22,7 +23,7 @@ const Share = (props) => {
 
         setClicked("YES");
 
-        console.log("Respuesta", dataResponse);
+        
         
         if (dataResponse.success === true) {
           // Servidor responde que es bueno y nos da la url

@@ -61,14 +61,14 @@ function App() {
   //EVENTO COLLAPSABLE SHARE LINK
   const handleCollapsableShareLink = (ev) => {
     deployCollapsableSharelink("");
-    console.log(data);
+    
     ev.preventDefault();
   };
 
   //EVENTO COLLAPSABLE
   const handleCollapsable = (ev) => {
     const clickSection = ev.currentTarget.id;
-    console.log(clickSection);
+    
     if (clickSection === "design") {
       deployCollapsableDesign("");
       rotateArrowDesign("");
@@ -102,6 +102,8 @@ function App() {
   const handleInput = (ev) => {
     const whichInput = ev.currentTarget.id;
 
+    
+
     switch (whichInput) {
       case "fullName":
         setData({
@@ -116,6 +118,7 @@ function App() {
         });
         break;
       case "telFill":
+       
         setData({
           ...data, // Spread operator
           phone: ev.currentTarget.value,
@@ -128,6 +131,7 @@ function App() {
         });
         break;
       case "linkedinFill":
+       
         setData({
           ...data, // Spread operator
           linkedin: ev.currentTarget.value,

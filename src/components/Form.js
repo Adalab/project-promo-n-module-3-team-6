@@ -148,7 +148,7 @@ const Form = (props) => {
               required
             />
 
-            <label className="fill__form--label" htmlFor="tel">
+            <label className="fill__form--label" htmlFor="phone">
               {" "}
               Teléfono
             </label>
