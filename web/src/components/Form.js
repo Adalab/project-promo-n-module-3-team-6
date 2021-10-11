@@ -33,13 +33,15 @@ const Form = (props) => {
 
             <section className="design__check--section">
               <input
-                defaultChecked={true}
+                // defaultChecked={true}
                 onChange={props.handleChangeColor}
                 className="palette"
                 type="radio"
                 id="palette1"
                 name="color"
                 value="1"
+                checked={props.data.palette === 1}
+
               />
 
               <section className="design__check--section__box">
@@ -57,6 +59,8 @@ const Form = (props) => {
                 id="palette2"
                 name="color"
                 value="2"
+                checked={props.data.palette === 2}
+
               />
 
               <section className="design__check--section__box">
@@ -73,6 +77,7 @@ const Form = (props) => {
                 id="palette3"
                 name="color"
                 value="3"
+                checked={props.data.palette === 3}
               />
 
               <section className="design__check--section__box">

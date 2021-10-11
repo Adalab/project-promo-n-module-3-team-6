@@ -20,7 +20,7 @@ import Footer from "./Footer";
 //FUNCION PRINCIPAL
 function App() {
   // VARIABLE DE ESTADO DE PALETAS
-  const [palette, setPalette] = useState("");
+  const [palette, setPalette] = useState('');
 
   //VARIABLE DE ESTADO DE ELEMENTOS DEL FORM
 
@@ -61,14 +61,14 @@ function App() {
   //EVENTO COLLAPSABLE SHARE LINK
   const handleCollapsableShareLink = (ev) => {
     deployCollapsableSharelink("");
-    
+
     ev.preventDefault();
   };
 
   //EVENTO COLLAPSABLE
   const handleCollapsable = (ev) => {
     const clickSection = ev.currentTarget.id;
-    
+
     if (clickSection === "design") {
       deployCollapsableDesign("");
       rotateArrowDesign("");
@@ -96,13 +96,12 @@ function App() {
   // FUNCION MANEJADORA DE PINTAR PREVIEW EN BASE A LAS PALETAS SELECCIONADAS
   const handleChangeColor = (ev) => {
     setPalette(ev.target.value);
+    setData({ ...data, palette: parseInt(ev.target.value) })
   };
 
   // FUNCION MANEJADORA DE REYENAR PREVIEW EN BASE A LOS INPUTS RELLENADOS
   const handleInput = (ev) => {
     const whichInput = ev.currentTarget.id;
-
-    
 
     switch (whichInput) {
       case "fullName":
@@ -118,7 +117,7 @@ function App() {
         });
         break;
       case "telFill":
-       
+
         setData({
           ...data, // Spread operator
           phone: ev.currentTarget.value,
@@ -131,7 +130,7 @@ function App() {
         });
         break;
       case "linkedinFill":
-       
+
         setData({
           ...data, // Spread operator
           linkedin: ev.currentTarget.value,
@@ -160,13 +159,13 @@ function App() {
       github: '',
       photo: { defaultImage },
     });
+    setPalette(1);
   }
 
   //FUNCION MANEJADORA RESET
   const handleReset = () => {
     clearState();
     setImage(defaultImage);
-
   }
 
   //HTML Y PARTE RENDERIZADA

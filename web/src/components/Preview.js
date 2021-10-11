@@ -23,7 +23,7 @@ const Preview = (props) => {
                     className={`photo__card--container js-photo palette-${props.paletePreview}`}
                 >
                     <div className="photo__card--rectangle"
-                        style={{ backgroundImage: `url(${props.image})` }}></div>
+                    ></div>
 
 
                     <p className="photo__card--name">{props.dataPreview.name === "" ? "Nombre Completo" : props.dataPreview.name}</p>
@@ -33,6 +33,7 @@ const Preview = (props) => {
                         src={props.image}
                         alt='user'
                         title='user'
+                        style={{ backgroundImage: `url(${props.image})` }}
                     />
                     <div className="photo__card--rrss">
                         <a href={props.dataPreview.phone === "" ? "" : `tel:${props.dataPreview.phone}`} id="telLink" target="_blank" rel="noreferrer">
