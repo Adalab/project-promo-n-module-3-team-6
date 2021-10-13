@@ -27,6 +27,9 @@ server.get("/card", (req, res) => {
   if (req.body.phone === "") {
     fields.push("Ups❕ 😓, debes rellenar completo tu móvil");
   }
+  if (req.body.palette === ""){
+    fields.push("Ups❕ 😓, debes elegir un estilo para tu tarjeta");
+  }
   if (req.body.name === "") {
     fields.push("Ups❕ 😓, debes rellenar tu nombre");
   }
