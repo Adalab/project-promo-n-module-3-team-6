@@ -9,7 +9,7 @@ const Share = (props) => {
 
   const handleShareCard = () => {
 
-    fetch("https://awesome-profile-cards.herokuapp.com/card", {
+    fetch("http://localhost:4001/card", {
       method: "POST",
       body: JSON.stringify(props.data),
       headers: {
