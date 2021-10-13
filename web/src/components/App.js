@@ -171,7 +171,7 @@ function App() {
 
   //HTML Y PARTE RENDERIZADA
   return (
-    <div className="App">
+    
       <div className="page">
         <Switch>
         <Route exact path="/">
@@ -213,7 +213,7 @@ function App() {
               handleCollapsableShareLink={handleCollapsableShareLink}
             />
           </main>
-         
+         <Footer />
            </div>
         </div>
         
@@ -222,9 +222,9 @@ function App() {
           {/* FOOTER*/}
           
        </Switch>
-       <Footer />
+       
       </div>
-      </div>
+    
   );
 }
 
