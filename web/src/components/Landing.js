@@ -1,4 +1,5 @@
-
+import "../stylesheets/App.scss";
+import { Link } from "react-router-dom";
 
 const Landing = () => {
 
@@ -29,11 +30,13 @@ const Landing = () => {
           </li>
         </ul>
        </section>
+       <Link to="/cards">
        <section className="main__section4 section4">
         <a className="section4__nav" href="./form.html">
           <button className="section4__button">comenzar</button>
         </a>
        </section>
+       </Link>
       </>
         
     );

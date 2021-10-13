@@ -1,21 +1,26 @@
 import tarjetasMolonasSvg from "../images/tarjetas-molonas.svg";
+import { Link } from "react-router-dom";
 // IMPORTAR ESTILOS
 import "../stylesheets/Header.scss";
 
 const Header = (props) => {
 
     return (
-        < div >
+        <  >
             <header className="form__header" >
-                <a href="./index.html" alt="home" title="Home">
+                <div>
+                    <Link to="/">
+                
                     <img
                         className="form__header--image"
                         src={tarjetasMolonasSvg}
                         alt="Awesome cards"
                     />
-                </a>
+                </Link>
+                </div>
+                
             </header>
-        </div >
+        </ >
     );
 };
 

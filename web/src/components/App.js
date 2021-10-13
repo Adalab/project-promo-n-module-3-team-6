@@ -5,7 +5,7 @@ import "../stylesheets/App.scss";
 import React, { useState } from "react";
 
 //importar rutas
-import { Link, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 //IMPORTAR IMÁGENES
 import defaultImage from '../images/photo.jpg';
@@ -15,6 +15,7 @@ import Header from "./Header";
 import Preview from "./Preview";
 import Form from "./Form";
 import Footer from "./Footer";
+import Landing from "./Landing";
 
 
 //FUNCION PRINCIPAL
@@ -172,40 +173,58 @@ function App() {
   return (
     <div className="App">
       <div className="page">
-        <Header />
+        <Switch>
+        <Route exact path="/">
+        <div className="main">
+          <Landing />
+          
+        </div>
+      </Route>
+        <Route path="/cards">
+      <div className="App">
+        <div className="page">
+          <Header />
 
-        {/* MAIN*/}
-        <main className="card">
-          {/* PREVIEW*/}
-          <Preview
-            dataPreview={data}
-            paletePreview={palette}
-            handleReset={handleReset}
-            image={image} />
+          {/* MAIN*/}
+          <main className="card">
+            {/* PREVIEW*/}
+            <Preview
+              dataPreview={data}
+              paletePreview={palette}
+              handleReset={handleReset}
+              image={image}
+            />
 
-          {/* FORM*/}
-          <Form
-            data={data}
-            handleCollapsable={handleCollapsable}
-            arrowDesign={arrowDesign}
-            collapsableDesign={collapsableDesign}
-            handleChangeColor={handleChangeColor}
-            arrowFill={arrowFill}
-            collapsableFill={collapsableFill}
-            handleImage={handleImage} image={image}
-            handleInput={handleInput}
-            arrowShare={arrowShare}
-            collapsableShare={collapsableShare}
-            collapsableShareLink={collapsableShareLink}
-            handleCollapsableShareLink={handleCollapsableShareLink}
-
-          />
-        </main>
-
-        {/* FOOTER*/}
-        <Footer />
+            {/* FORM*/}
+            <Form
+              data={data}
+              handleCollapsable={handleCollapsable}
+              arrowDesign={arrowDesign}
+              collapsableDesign={collapsableDesign}
+              handleChangeColor={handleChangeColor}
+              arrowFill={arrowFill}
+              collapsableFill={collapsableFill}
+              handleImage={handleImage}
+              image={image}
+              handleInput={handleInput}
+              arrowShare={arrowShare}
+              collapsableShare={collapsableShare}
+              collapsableShareLink={collapsableShareLink}
+              handleCollapsableShareLink={handleCollapsableShareLink}
+            />
+          </main>
+         
+           </div>
+        </div>
+        
+         </Route>
+      
+          {/* FOOTER*/}
+          
+       </Switch>
+       <Footer />
       </div>
-    </div>
+      </div>
   );
 }
 
