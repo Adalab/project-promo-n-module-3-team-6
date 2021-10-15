@@ -37,6 +37,8 @@ server.get('/data/:id', (req, res)=>{
   }
 })
 
+
+
 // Escribimos los endpoints que queramos
 server.get("/card", (req, res) => {
   const fields = [];
