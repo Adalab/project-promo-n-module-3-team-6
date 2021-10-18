@@ -34,6 +34,7 @@ server.get('/card/:id', (req, res)=>{
   if (data === null){
     res.render ('card not found');
   }else{
+    res.render('views/card', data )
 
   }
 })

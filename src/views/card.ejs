@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+        <section class="photo__container">
+
+           
+            <!-- <div
+                class={`photo__card--container js-photo palette-${props.paletePreview}`}
+            > -->
+                <div class="photo__card--rectangle"
+                ></div>
+
+
+                <p class="photo__card--name"><%=name%> </p>
+                <p class="photo__card--frontend"><%=job%></p>
+                <img
+                    class='photo__card--photo' id='photo'
+                    src=<%=image%>
+                    alt='user'
+                    title='user'
+                    style={{ backgroundImage: `url(<%=image%>)` }}
+                />
+                <div class="photo__card--rrss">
+                    <a href=<%=phone%> id="telLink" target="_blank" rel="noreferrer">
+                        <i class="fas fa-mobile-alt photo__card--rrss-icon"></i>
+                    </a>
+                    <a href=<%=email %> id="emailLink" target="_blank" rel="noreferrer">
+                        <i class="far fa-envelope photo__card--rrss-icon"></i>
+                    </a>
+                    <a href=<%=linkedin%> id="linkedinLink" target="_blank" rel="noreferrer">
+                        <i class="fab fa-linkedin-in photo__card--rrss-icon"></i>
+                    </a>
+                    <a href=<%=github%>  id="githubLink" target="_blank" rel="noreferrer">
+                        <i class="fab fa-github-alt photo__card--rrss-icon"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+    
+</body>
+</html>
