@@ -1,10 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat&family=Open+Sans:wght@400;600;900&display=swap"
+      rel="stylesheet" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+      <link rel="stylesheet" href="../src/public-react/static/css/main.e4327edf.chunk.css"/>
+    <title>Esta es tu tarjeta</title>
 </head>
 <body>
     
@@ -22,10 +31,10 @@
                 <p class="photo__card--frontend"><%=job%></p>
                 <img
                     class='photo__card--photo' id='photo'
-                    src=<%=image%>
+                    
                     alt='user'
                     title='user'
-                    style={{ backgroundImage: `url(<%=image%>)` }}
+                    style=" background-image: url('<%=photo%>') "
                 />
                 <div class="photo__card--rrss">
                     <a href=<%=phone%> id="telLink" target="_blank" rel="noreferrer">

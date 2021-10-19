@@ -32,9 +32,9 @@ server.get('/card/:id', (req, res)=>{
   const query =db.prepare(' SELECT * FROM cards WHERE id = ?');
   const data = query.get(id);
   if (data === null){
-    res.render ('card not found');
+    res.render ('notFound');
   }else{
-    res.render('views/card', data )
+    res.render('card', data )
 
   }
 })
