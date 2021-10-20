@@ -12,7 +12,7 @@
       rel="stylesheet" />
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
       integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-      <link rel="stylesheet" href="../src/styles/main.css"/>
+      <link rel="stylesheet" type="text/css" href="/static/css/main.e4327edf.chunk.css"/>
     <title>Esta es tu tarjeta</title>
 </head>
 <body>
@@ -21,7 +21,7 @@
 
            
              <div
-                class={`photo__card--container js-photo palette-${props.paletePreview}`}
+                class="photo__card--container js-photo palette-<%=palette%>"
             > 
                 <div class="photo__card--rectangle"
                 ></div>
@@ -29,13 +29,8 @@
 
                 <p class="photo__card--name"><%=name%> </p>
                 <p class="photo__card--frontend"><%=job%></p>
-                <img
-                    class='photo__card--photo' id='photo'
-                    
-                    alt='user'
-                    title='user'
-                    style=" background-image: url('<%=photo%>') "
-                />
+               
+                <div class='photo__card--photo' id='photo' style=" background-image: url('<%=photo%>') "></div>
                 <div class="photo__card--rrss">
                     <a href=<%=phone%> id="telLink" target="_blank" rel="noreferrer">
                         <i class="fas fa-mobile-alt photo__card--rrss-icon"></i>
