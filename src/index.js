@@ -19,7 +19,7 @@ server.set('view engine', 'ejs');
 server.use( express.json({limit:'10mb'}));
 
 // Arrancamos el servidor en el puerto 3000
-const serverPort = 4001;
+const serverPort = process.env.PORT || 4001;
 server.listen(serverPort, () => {
   console.log(`Server listening at http://localhost:${serverPort}`);
 });
